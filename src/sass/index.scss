@@ -1,2 +1,14 @@
 @import './common';
-@import './example';
+
+@import './utils/variables';
+@import './utils/breakpoints';
+@import './utils/global';
+
+@import './components/buttons';
+
+@import './layout/film-card';
+@import './layout/film-modal';
+@import './layout/footer';
+@import './layout/group-modal';
+@import './layout/header';
+@import './layout/hero';
