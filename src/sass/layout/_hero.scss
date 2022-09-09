@@ -78,3 +78,89 @@
   width: 12px;
   height: 12px;
 }
+
+.library-hero {
+  height: 230px;
+  background-color: rgba(0, 0, 0, 0.56);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url(../images/mobile/background_my-library_mobile.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: url(../images/mobile/background_my-library_mobile-2x.jpg);
+  }
+
+  @media screen and (min-width: $tablet) {
+    background-image: url(../images/tablet/background_my-library_tablet.jpg);
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(../images/tablet/background_my-library_tablet-2x.jpg);
+    }
+  }
+
+  @media screen and (min-width: $desktop) {
+    background-image: url(../images/desctop/background_my-library_desctop.jpg);
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(../images/desctop/background_my-library_desctop-2x.jpg);
+    }
+  }
+
+  @media screen and (min-width: $tablet) {
+    height: 216px;
+  }
+}
+
+.library-list {
+  display: flex;
+  justify-content: center;
+}
+
+.library-item {
+  margin-top: 124px;
+}
+
+.library-item:not(:last-child) {
+  margin-right: 20px;
+
+  @media screen and (min-width: $tablet) {
+    margin-right: 32px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin-right: 16px;
+  }
+}
+
+.watched-btn,
+.queue-btn {
+  min-width: 130px;
+  padding: 13px 35px;
+  border: 2px solid $white;
+  border-radius: 5px;
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  align-items: center;
+  text-transform: uppercase;
+
+  @media screen and (min-width: $tablet) {
+    min-width: 152px;
+    padding: 13px 45px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    min-width: 148px;
+    padding: 11px 40px;
+  }
+}
