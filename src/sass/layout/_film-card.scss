@@ -1,0 +1,50 @@
+.gallery {
+  padding: 60px 16px;
+}
+.gallery__container {
+  margin-right: auto;
+  margin-left: auto;
+
+  padding: 0 16px;
+  @media screen and (min-width: $mobile) and (max-width: 767px) {
+    width: 480px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    width: 768px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 1280px;
+  }
+}
+.gallery__box {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -16px;
+  margin-top: -16px;
+}
+.card {
+  margin-top: 16px;
+  margin-left: 16px;
+  //flex-basis: calc(100% / 3 - 16px);
+}
+.card__img {
+  margin-bottom: 12px;
+
+  max-width: 395px;
+  max-height: 574px;
+  border-radius: 5px;
+}
+.card__titel {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+
+  color: $black;
+  text-transform: uppercase;
+}
+.card__text {
+  color: $orange;
+  text-transform: none;
+}
