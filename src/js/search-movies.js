@@ -13,6 +13,7 @@ function onSearchMovies(event) {
   query = e.currentTarget.elements.searchQuery.value.trim();
 
   fetchMovies(query, page).then(({ data }) => {
+    console.log(query);
     renderCardImages(data.hits);
 
     page += 1;
