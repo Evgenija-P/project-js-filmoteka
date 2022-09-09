@@ -1,4 +1,5 @@
-import { fatchMovies } from './js/fatch-movies';
+// import { fatchMovies } from './js/fatch-movies';
+import { fatchMovies } from './fatch-movies';
 
 const formSearch = document.querySelector('.search-form');
 

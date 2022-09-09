@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-import { API_KEY, URL } from './js/variables';
+// import { API_KEY, URL } from './js/variables';
+import { API_KEY, URL } from './variables';
 
 async function fatchMovies(query, page) {
   try {
