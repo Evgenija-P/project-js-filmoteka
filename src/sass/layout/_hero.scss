@@ -1,0 +1,80 @@
+.hero {
+  height: 230px;
+  background-image: url(../images/mobile/background_homepage_mobile.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.9;
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: url(../images/mobile/background_homepage_mobile-2x.jpg);
+  }
+
+  @media screen and (min-width: $tablet) {
+    background-image: url(../images/tablet/background_homepage_tablet.jpg);
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(../images/tablet/background_homepage_tablet-2x.jpg);
+    }
+  }
+
+  @media screen and (min-width: $desktop) {
+    background-image: url(../images/desctop/background_homepage_desctop.jpg);
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(../images/desctop/background_homepage_desctop-2x.jpg);
+    }
+  }
+
+  @media screen and (min-width: $tablet) {
+    height: 216px;
+  }
+}
+
+.input-field {
+  position: relative;
+  margin: 0 auto;
+  width: 280px;
+
+  @media screen and (min-width: $tablet) {
+    width: 336px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 394px;
+  }
+}
+
+.text-input {
+  margin-top: 118px;
+  width: 100%;
+  outline: none;
+  border: transparent;
+  border-bottom: 0.5px solid #ffffff;
+  background-color: transparent;
+  color: $white;
+  font-family: 'Roboto';
+  font-size: 14px;
+  line-height: 1.14;
+
+  &::placeholder {
+    color: $white;
+    font-family: 'Roboto';
+    font-size: 14px;
+    line-height: 1.14;
+  }
+}
+
+.search-button {
+  position: absolute;
+  top: 115;
+  right: 0;
+  width: 12px;
+  height: 12px;
+}
