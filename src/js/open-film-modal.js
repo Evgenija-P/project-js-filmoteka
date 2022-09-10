@@ -21,8 +21,6 @@ function onGalleryBoxClick(event) {
   }
   const filmId = event.target.closest('.card').id;
 
-  console.log('film id: ', filmId);
-
   fetchFilmDetailsById(filmId)
     .then(filmDetails => {
       clearFilmModalMarkup();
