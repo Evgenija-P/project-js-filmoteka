@@ -24,7 +24,7 @@
 
   width: 100%;
   background-color: $white;
-  margin: 20px 0px;
+  margin: 20px auto;
 
   @media screen and (min-width: $mobile) {
     max-width: 280px;
@@ -32,12 +32,10 @@
 
   @media screen and (min-width: $tablet) {
     max-width: 704px;
-    margin: 220px auto;
   }
 
   @media screen and (min-width: 1024px) {
     max-width: 806px;
-    margin: 150px auto;
   }
 }
 
@@ -141,6 +139,35 @@
 
   &--uppercase {
     text-transform: uppercase;
+  }
+}
+
+.film-vote {
+  display: flex;
+  gap: 8px;
+}
+
+.film-vote__lable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 36px;
+  height: 16px;
+
+  background-color: $grey-light;
+  border-radius: 5px;
+
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.16;
+
+  text-align: center;
+
+  &--orange {
+    background-color: $orange;
+    color: $white;
   }
 }
 
