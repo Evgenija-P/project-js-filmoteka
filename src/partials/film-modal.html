@@ -1,90 +1,106 @@
-<div class="modal" data-modal>
-	<div class="film-modal">
-		<button class="button-close" type="button" button-modal-close>
-			<svg class="icon-close">
-				<use href="./images/icon/symbol-defs.svg#icon-close"></use>
-			</svg>
-		</button>
+<div class="modal is-hidden" data-modal>
+  <div class="film-modal">
+    <button class="button-close" type="button" button-modal-close>
+      <svg class="icon-close">
+        <use href="./images/icon/symbol-defs.svg#icon-close"></use>
+      </svg>
+    </button>
 
-		<article class="film" film-article>
-			<picture>
-				<source srcset="
+    <article class="film" film-article>
+      <picture>
+        <source
+          srcset="
             ./images/desctop/film-image-desktop.jpg    1x,
             ./images/desctop/film-image-desktop@2x.jpg 2x
-          " media="(min-width: 1024px" />
-				<source srcset="
+          "
+          media="(min-width: 1024px"
+        />
+        <source
+          srcset="
             ./images/tablet/film-image-tablet.jpg    1x,
             ./images/tablet/film-image-tablet@2x.jpg 2x
-          " media="(min-width: 768px" />
-				<source srcset="
+          "
+          media="(min-width: 768px"
+        />
+        <source
+          srcset="
             ./images/mobile/film-image-mobile.jpg    1x,
             ./images/mobile/film-image-mobile@2x.jpg 2x
-          " media="max-width: 767px" />
+          "
+          media="max-width: 767px"
+        />
 
-				<img class="film__image" src="./images/mobile/film-image-mobile.jpg" alt="Film Image" />
-			</picture>
+        <img
+          class="film__image"
+          src="./images/mobile/film-image-mobile.jpg"
+          alt="Film Image"
+        />
+      </picture>
 
-			<div class="film__content">
-				<h2 class="film__title">A FISTFUL OF LEAD</h2>
+      <div class="film__content">
+        <h2 class="film__title">A FISTFUL OF LEAD</h2>
 
-				<ul class="film-info">
-					<li class="film-info__item">
-						<p class="film-info__lable">Vote / Votes</p>
+        <ul class="film-info">
+          <li class="film-info__item">
+            <p class="film-info__lable">Vote / Votes</p>
 
-						<div class="film-vote">
-							<span class="film-vote__lable film-vote__lable--orange">7.3</span>
-							<span>/</span>
-							<span class="film-vote__lable">1260</span>
-						</div>
-					</li>
+            <div class="film-vote">
+              <span class="film-vote__lable film-vote__lable--orange">7.3</span>
+              <span>/</span>
+              <span class="film-vote__lable">1260</span>
+            </div>
+          </li>
 
-					<li class="film-info__item">
-						<p class="film-info__lable">Popularity</p>
-						<span class="film-info__text">100.2</span>
-					</li>
+          <li class="film-info__item">
+            <p class="film-info__lable">Popularity</p>
+            <span class="film-info__text">100.2</span>
+          </li>
 
-					<li class="film-info__item">
-						<p class="film-info__lable">Original Title</p>
-						<span class="film-info__text film-info__text--uppercase">
-							A FISTFUL OF LEAD
-						</span>
-					</li>
+          <li class="film-info__item">
+            <p class="film-info__lable">Original Title</p>
+            <span class="film-info__text film-info__text--uppercase">
+              A FISTFUL OF LEAD
+            </span>
+          </li>
 
-					<li class="film-info__item">
-						<p class="film-info__lable">Genre</p>
-						<span class="film-info__text">Western</span>
-					</li>
-				</ul>
+          <li class="film-info__item">
+            <p class="film-info__lable">Genre</p>
+            <span class="film-info__text">Western</span>
+          </li>
+        </ul>
 
-				<div class="film-description">
-					<h3 class="film-description__title">About</h3>
-					<p class="film-description__text">
-						Four of the West's most infamous outlaws assemble to steal a huge
-						stash of gold from the most corrupt settlement of the gold rush
-						towns. But not all goes to plan one is killed and the other three
-						escapes with bags of gold hide out in the abandoned gold mine where
-						they happen across another gang of three – who themselves were
-						planning to hit the very same bank! As tensions rise, things go from
-						bad to worse as they realise the bags of gold are filled with
-						lead... they've been double crossed – but by who and how?
-					</p>
-				</div>
+        <div class="film-description">
+          <h3 class="film-description__title">About</h3>
+          <p class="film-description__text">
+            Four of the West's most infamous outlaws assemble to steal a huge
+            stash of gold from the most corrupt settlement of the gold rush
+            towns. But not all goes to plan one is killed and the other three
+            escapes with bags of gold hide out in the abandoned gold mine where
+            they happen across another gang of three – who themselves were
+            planning to hit the very same bank! As tensions rise, things go from
+            bad to worse as they realise the bags of gold are filled with
+            lead... they've been double crossed – but by who and how?
+          </p>
+        </div>
 
-				<ul class="film-button">
-					<li class="film-button__item">
-						<button class="film-button__primary film-button__primary--active" type="button"
-							button-add-watch>
-							Add to Watched
-						</button>
-					</li>
+        <ul class="film-button">
+          <li class="film-button__item">
+            <button
+              class="film-button__primary film-button__primary--active"
+              type="button"
+              button-add-watch
+            >
+              Add to Watched
+            </button>
+          </li>
 
-					<li class="film-button__item">
-						<button class="film-button__primary" type="button">
-							Add to Queue
-						</button>
-					</li>
-				</ul>
-			</div>
-		</article>
-	</div>
+          <li class="film-button__item">
+            <button class="film-button__primary" type="button">
+              Add to Queue
+            </button>
+          </li>
+        </ul>
+      </div>
+    </article>
+  </div>
 </div>
