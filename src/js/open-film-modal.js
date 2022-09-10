@@ -110,7 +110,8 @@ function createFilmModalMarkup(data) {
           </li>
 
           <li class="film-button__item">
-            <button class="film-button__primary" type="button">
+            <button class="film-button__primary" type="button"
+			button-add-queue>
               Add to Queue
             </button>
           </li>
