@@ -1,0 +1,2 @@
+const{modalWindow:e,buttonModalClose:o,buttonModalOpen:t}={modalWindow:document.querySelector("[data-modal]"),buttonModalClose:document.querySelector("[button-modal-close]")};function n(){window.removeEventListener("keydown",d),e.classList.add("is-hidden")}function d(e){"Escape"===e.code&&n()}o.addEventListener("click",n),e.addEventListener("click",(function(e){e.currentTarget===e.target&&n()}));
+//# sourceMappingURL=my-library.afa97a9b.js.map
