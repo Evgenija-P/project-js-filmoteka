@@ -15,22 +15,24 @@ refs.galleryBox.addEventListener('click', onGalleryBoxClick);
 
 // -------------EVENT HANDLERS-------------
 
-function onGalleryBoxClick(event) {
+async function onGalleryBoxClick(event) {
   if (event.target.classList.contains('gallery__box')) {
     return;
   }
   const filmId = event.target.closest('.card').id;
 
-  fetchFilmDetailsById(filmId)
-    .then(filmDetails => {
-      clearFilmModalMarkup();
-      renderFilmModal(filmDetails);
-      refs.modal.classList.remove('is-hidden');
-    })
-    .catch(err => {
-      console.log(err.message);
-      console.log(err.code);
-    });
+  let filmDetails = {};
+
+  try {
+    filmDetails = await fetchFilmDetailsById(filmId);
+  } catch (err) {
+    console.log(err.message);
+    console.log(err.code);
+  }
+
+  clearFilmModalMarkup();
+  renderFilmModal(filmDetails);
+  openModal();
 }
 
 // -------------FUNCTIONS-------------
@@ -108,4 +110,8 @@ function clearFilmModalMarkup() {
 function renderFilmModal(data) {
   const fiimModalMarkup = createFilmModalMarkup(data);
   refs.filmArticle.insertAdjacentHTML('beforeend', fiimModalMarkup);
+}
+
+function openModal() {
+  refs.modal.classList.remove('is-hidden');
 }
