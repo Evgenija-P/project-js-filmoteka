@@ -1,18 +1,23 @@
-export { renderCardMovies };
+import { findGenresOfMovie } from './find-genres-of-popular-movies';
 
 const galleryContainerMovies = document.querySelector('.gallery__box');
+
+export { renderCardMovies };
 
 function renderCardMovies(movies) {
   const markup = movies
     .map(movie => {
-      const { backdrop_path, title, release_date } = movie;
+      const { poster_path, title, genre_ids, release_date, id } = movie;
+      const date = new Date(release_date).getFullYear();
       return `
-           <div class="card">
-        <img class="card__img" src="https://image.tmdb.org/t/p/w500${backdrop_path}" alt="${title}
+           <div class="card" id="${id}">
+        <img class="card__img" src="https://image.tmdb.org/t/p/w500${poster_path}" || src="./images/foto.jpg" alt="${title}
 " />
         <p class="card__titel">
           ${title} <br />
-          <span class="card__text">Drama, Action | ${release_date}</span>
+          <span class="card__text">${findGenresOfMovie(
+            genre_ids
+          )} | ${date}</span>
         </p>
       </div>`;
     })

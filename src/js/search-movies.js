@@ -1,6 +1,9 @@
 import { fatchMovies } from './fatch-movies';
 import { renderCardMovies } from './render-movies-card';
 
+import Notiflix from 'notiflix';
+import 'notiflix/dist/notiflix-3.2.5.min.css';
+
 const formSearch = document.querySelector('.search-form');
 const galleryContainerMovies = document.querySelector('.gallery__box');
 
@@ -15,12 +18,26 @@ function onSearchMovies(event) {
   query = event.currentTarget.elements.text.value;
   console.log(query);
 
+  if (query === '') {
+    onResultSearchError();
+    return;
+  }
+
   fatchMovies(query, page).then(({ data }) => {
     console.log(data);
 
-    page = 1;
-    galleryContainerMovies.innerHTML = '';
-    renderCardMovies(data.results);
-    page += 1;
+    if (data.total_results === 0) {
+      onResultSearchError();
+    } else {
+      galleryContainerMovies.innerHTML = '';
+      renderCardMovies(data.results);
+      page += 1;
+    }
   });
+}
+
+function onResultSearchError() {
+  Notiflix.Notify.failure(
+    'Search result not successful. Enter the correct movie name.'
+  );
 }
