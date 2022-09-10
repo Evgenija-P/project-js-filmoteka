@@ -126,6 +126,10 @@
 
 .library-item {
   margin-top: 124px;
+
+  @media screen and (min-width: $tablet) {
+    margin-top: 114px;
+  }
 }
 
 .library-item:not(:last-child) {
