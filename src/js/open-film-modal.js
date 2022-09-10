@@ -98,23 +98,6 @@ function createFilmModalMarkup(data) {
             ${overview}
           </p>
         </div>
-
-        <ul class="film-button">
-          <li class="film-button__item">
-            <button
-              class="film-button__primary film-button__primary--active"
-              type="button"
-            >
-              Add to Watched
-            </button>
-          </li>
-
-          <li class="film-button__item">
-            <button class="film-button__primary" type="button">
-              Add to Queue
-            </button>
-          </li>
-        </ul>
       </div>
     </article>
 `;
