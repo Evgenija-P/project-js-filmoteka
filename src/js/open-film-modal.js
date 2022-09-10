@@ -1,10 +1,10 @@
 import { fetchFilmDetailsById } from './fetch-film-details';
 
 const refs = {
-  galleryBox: document.querySelector('.gallery__box'),
-  filmModal: document.querySelector('.film-modal'),
-  modal: document.querySelector('.modal'),
-  filmArticle: document.querySelector('.film'),
+	galleryBox: document.querySelector('.gallery__box'),
+	filmModal: document.querySelector('.film-modal'),
+	modal: document.querySelector('.modal'),
+	filmArticle: document.querySelector('.film'),
 };
 
 console.log('film article: ', refs.filmArticle);
@@ -16,40 +16,41 @@ refs.galleryBox.addEventListener('click', onGalleryBoxClick);
 // -------------EVENT HANDLERS-------------
 
 function onGalleryBoxClick(event) {
-  if (event.target.classList.contains('gallery__box')) {
-    return;
-  }
-  const filmId = event.target.closest('.card').id;
+	if (event.target.classList.contains('gallery__box')) {
+		return;
+	}
+	const filmId = event.target.closest('.card').id;
 
-  fetchFilmDetailsById(filmId)
-    .then(filmDetails => {
-      clearFilmModalMarkup();
-      renderFilmModal(filmDetails);
-      refs.modal.classList.remove('is-hidden');
-    })
-    .catch(err => {
-      console.log(err.message);
-      console.log(err.code);
-    });
+	fetchFilmDetailsById(filmId)
+		.then(filmDetails => {
+			clearFilmModalMarkup();
+			renderFilmModal(filmDetails);
+			refs.modal.classList.remove('is-hidden');
+		})
+		.catch(err => {
+			console.log(err.message);
+			console.log(err.code);
+		});
 }
 
 // -------------FUNCTIONS-------------
-
+export let egg = {};
 function createFilmModalMarkup(data) {
-  const {
-    poster_path,
-    title,
-    vote_average,
-    vote_count,
-    popularity,
-    original_title,
-    genres,
-    overview,
-  } = data;
+	const {
+		poster_path,
+		title,
+		vote_average,
+		vote_count,
+		popularity,
+		original_title,
+		genres,
+		overview,
+	} = data;
+	egg = data;
+	console.log(egg);
+	console.log('poster path', poster_path);
 
-  console.log('poster path', poster_path);
-
-  return `
+	return `
       <img
           class="film__image"
           src="https://image.tmdb.org/t/p/w400${poster_path}"
@@ -85,8 +86,8 @@ function createFilmModalMarkup(data) {
           <li class="film-info__item">
             <p class="film-info__lable">Genre</p>
             <span class="film-info__text">${genres
-              .map(genre => genre.name)
-              .join(', ')}</span>
+			.map(genre => genre.name)
+			.join(', ')}</span>
           </li>
         </ul>
 
@@ -102,6 +103,7 @@ function createFilmModalMarkup(data) {
             <button
               class="film-button__primary film-button__primary--active"
               type="button"
+			  button-add-watch
             >
               Add to Watched
             </button>
@@ -119,10 +121,10 @@ function createFilmModalMarkup(data) {
 }
 
 function clearFilmModalMarkup() {
-  refs.filmArticle.innerHTML = '';
+	refs.filmArticle.innerHTML = '';
 }
 
 function renderFilmModal(data) {
-  const fiimModalMarkup = createFilmModalMarkup(data);
-  refs.filmArticle.insertAdjacentHTML('beforeend', fiimModalMarkup);
+	const fiimModalMarkup = createFilmModalMarkup(data);
+	refs.filmArticle.insertAdjacentHTML('beforeend', fiimModalMarkup);
 }
