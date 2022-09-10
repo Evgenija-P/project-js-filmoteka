@@ -11,12 +11,12 @@ const dataSave = function (data) {
 
 	uniqFilms = uniqBy(watchFilms, 'id');
 
-	localStorage.setItem("films", JSON.stringify(uniqFilms));
+	localStorage.setItem("watched", JSON.stringify(uniqFilms));
 }
 
 
-if (localStorage.getItem("films")) {
-	watchFilms = JSON.parse(localStorage.getItem("films"));
+if (localStorage.getItem("watched")) {
+	watchFilms = JSON.parse(localStorage.getItem("watched"));
 
 }
 
