@@ -31,7 +31,8 @@
 }
 
 // есть 2 оранжевых кнопки, в которых нашла тень
-.button-queue-orange {
+.button-queue-orange,
+.load-more {
   @extend %button;
 
   background-color: $orange-bg;
@@ -49,4 +50,10 @@
 .button-nav {
   @extend %button;
   line-height: 1.17;
+}
+.load-more {
+  width: 148px;
+  height: 42px;
+  display: block;
+  margin: 0 auto;
 }
