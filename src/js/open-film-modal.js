@@ -1,20 +1,21 @@
 import { fetchFilmDetailsById } from './fetch-film-details';
 import noPosterUrl from '../images/foto.jpg';
-
-window.loadNoPoster = function (img) {
-  img.src = noPosterUrl;
-};
+import closeBtnIcon from '../images/icon/symbol-defs.svg';
+import { dataSave as saveQueueData } from './add-queue';
+import { dataSave as saveWatchData } from './add-watch';
 
 const refs = {
   galleryBox: document.querySelector('.gallery__box'),
-  filmModal: document.querySelector('.film-modal'),
-  modal: document.querySelector('.modal'),
-  filmArticle: document.querySelector('.film'),
+  filmModal: document.querySelector('[data-modal]'),
 };
+
+let filmDetails = {};
+const cash = [];
 
 // -------------EVENT LISTENERS-------------
 
 refs.galleryBox.addEventListener('click', onGalleryBoxClick);
+refs.filmModal.addEventListener('click', onBackdropModalClick);
 
 // -------------EVENT HANDLERS-------------
 
@@ -22,24 +23,65 @@ async function onGalleryBoxClick(event) {
   if (event.target.classList.contains('gallery__box')) {
     return;
   }
-  const filmId = event.target.closest('.card').id;
 
-  let filmDetails = {};
+  const filmId = Number(event.target.closest('.card').id);
 
-  try {
-    filmDetails = await fetchFilmDetailsById(filmId);
-  } catch (err) {
-    console.log(err.message);
-    console.log(err.code);
+  let cashedFilmDetails = cash.find(film => film.id === filmId);
+
+  if (cashedFilmDetails) {
+    filmDetails = cashedFilmDetails;
+  } else {
+    try {
+      filmDetails = await fetchFilmDetailsById(filmId);
+    } catch (err) {
+      console.log(err.message);
+      console.log(err.code);
+    }
+
+    cash.push(filmDetails);
   }
 
   clearFilmModalMarkup();
   renderFilmModal(filmDetails);
+  eventListenersReistration();
   openModal();
+  window.addEventListener('keydown', onEscKeyPress);
 }
 
+function openModal() {
+  refs.filmModal.classList.remove('is-hidden');
+}
+
+function closeModal() {
+  refs.filmModal.classList.add('is-hidden');
+  window.removeEventListener('keydown', onEscKeyPress);
+}
+
+function onEscKeyPress(e) {
+  if (e.code === 'Escape') {
+    closeModal();
+  }
+}
+
+function onBackdropModalClick(e) {
+  if (e.currentTarget === e.target) {
+    closeModal();
+  }
+}
+
+function onAddQueqeBtn() {
+  saveQueueData(filmDetails);
+}
+
+function onAddWatchBtn() {
+  saveWatchData(filmDetails);
+}
+
+window.loadNoPoster = function (img) {
+  img.src = noPosterUrl;
+};
+
 // -------------FUNCTIONS-------------
-export let egg = {};
 
 function createFilmModalMarkup(data) {
   const {
@@ -52,21 +94,23 @@ function createFilmModalMarkup(data) {
     genres,
     overview,
   } = data;
-  egg = data;
-  console.log(egg);
-  console.log('poster path', poster_path);
 
   const posterUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
 
   return `
-
-      <img
-          class="film__image"
-          src="${posterUrl}"
-          alt="Film Image"
-          onerror="loadNoPoster(this)"
-        />
-
+  <div class="film-modal">
+    <button class="button-close" type="button" button-modal-close>
+      <svg class="icon-close">
+        <use href="${closeBtnIcon}#icon-close"></use>
+      </svg>
+    </button>
+    <img
+      class="film__image"
+      src="${posterUrl}"
+      alt="Film Image"
+      onerror="loadNoPoster(this)"
+    />
+    <article class="film">
       <div class="film__content">
         <h2 class="film__title">${title}</h2>
 
@@ -75,7 +119,9 @@ function createFilmModalMarkup(data) {
             <p class="film-info__lable">Vote / Votes</p>
 
             <div class="film-vote">
-              <span class="film-vote__lable film-vote__lable--orange">${vote_average}</span>
+              <span class="film-vote__lable film-vote__lable--orange"
+                >${vote_average}</span
+              >
               <span>/</span>
               <span class="film-vote__lable">${vote_count}</span>
             </div>
@@ -95,34 +141,56 @@ function createFilmModalMarkup(data) {
 
           <li class="film-info__item">
             <p class="film-info__lable">Genre</p>
-            <span class="film-info__text">${genres
-              .map(genre => genre.name)
-              .join(', ')}</span>
+            <span class="film-info__text"
+              >${genres.map(genre => genre.name).join(', ')}</span
+            >
           </li>
         </ul>
 
         <div class="film-description">
           <h3 class="film-description__title">About</h3>
-          <p class="film-description__text">
-            ${overview}
-          </p>
+          <p class="film-description__text">${overview}</p>
         </div>
-
-
       </div>
+      <ul class="film-button">
+        <li class="film-button__item">
+          <button
+            class="film-button__primary film-button__primary--active"
+            type="button"
+            button-add-watch
+          >
+            Add to Watched
+          </button>
+        </li>
+
+        <li class="film-button__item">
+          <button class="film-button__primary" type="button" button-add-queue>
+            Add to Queue
+          </button>
+        </li>
+      </ul>
     </article>
+  </div>
 `;
 }
 
 function clearFilmModalMarkup() {
-  refs.filmArticle.innerHTML = '';
+  refs.filmModal.innerHTML = '';
 }
 
 function renderFilmModal(data) {
   const fiimModalMarkup = createFilmModalMarkup(data);
-  refs.filmArticle.insertAdjacentHTML('beforeend', fiimModalMarkup);
+  refs.filmModal.insertAdjacentHTML('beforeend', fiimModalMarkup);
 }
 
-function openModal() {
-  refs.modal.classList.remove('is-hidden');
+function eventListenersReistration() {
+  const closeBtn = document.querySelector('[button-modal-close]');
+  const addQueqeBtn = document.querySelector('[button-add-queue]');
+  const addWatchBtn = document.querySelector('[button-add-watch]');
+
+  closeBtn.addEventListener('click', closeModal);
+
+  addQueqeBtn.addEventListener('click', onAddQueqeBtn);
+
+  addWatchBtn.addEventListener('click', onAddWatchBtn);
 }
