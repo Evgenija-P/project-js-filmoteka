@@ -1,16 +1,15 @@
 import { fetchFilmDetailsById } from './fetch-film-details';
 import noPosterUrl from '../images/foto.jpg';
 
+window.loadNoPoster = function (img) {
+  img.src = noPosterUrl;
+};
+
 const refs = {
   galleryBox: document.querySelector('.gallery__box'),
   filmModal: document.querySelector('.film-modal'),
   modal: document.querySelector('.modal'),
   filmArticle: document.querySelector('.film'),
-  filmImage: document.querySelector('.film__image'),
-};
-
-window.loadNoPoster = function (img) {
-  img.src = noPosterUrl;
 };
 
 // -------------EVENT LISTENERS-------------
@@ -40,6 +39,7 @@ async function onGalleryBoxClick(event) {
 }
 
 // -------------FUNCTIONS-------------
+export let egg = {};
 
 function createFilmModalMarkup(data) {
   const {
@@ -52,10 +52,14 @@ function createFilmModalMarkup(data) {
     genres,
     overview,
   } = data;
+  egg = data;
+  console.log(egg);
+  console.log('poster path', poster_path);
 
   const posterUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
 
   return `
+
       <img
           class="film__image"
           src="${posterUrl}"
@@ -103,6 +107,8 @@ function createFilmModalMarkup(data) {
             ${overview}
           </p>
         </div>
+
+
       </div>
     </article>
 `;
