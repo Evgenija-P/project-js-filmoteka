@@ -1,0 +1,2 @@
+!function(){var e=document.querySelector(".team-modal"),n=document.querySelector(".group-button"),t=document.querySelector(".backdrop");function d(){t.classList.add("is-hidden"),window.removeEventListener("keydown",c)}function c(e){"Escape"===e.code&&d()}e.addEventListener("click",(function(){t.classList.remove("is-hidden"),window.addEventListener("keydown",c)})),n.addEventListener("click",d),t.addEventListener("click",(function(e){e.currentTarget===e.target&&d()}))}();
+//# sourceMappingURL=my-library.ee5c78d4.js.map
