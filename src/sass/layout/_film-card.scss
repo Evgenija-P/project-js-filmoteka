@@ -35,6 +35,7 @@
   margin-top: 32px;
   margin-left: 15px;
   width: 100%;
+  cursor: pointer;
   @media screen and (min-width: $tablet) {
     flex-basis: calc(100% / 2 - 16px);
   }
@@ -62,11 +63,14 @@
 }
 .card__wrap {
   width: 100%;
-  display: flex;
-  align-items: flex-end;
+  //display: flex;
+  //align-items: flex-end;
 }
 
 .card__titel {
+  display: inline;
+  position: relative;
+
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
@@ -84,6 +88,7 @@
   text-transform: none;
 }
 .cart__rating {
+  position: absolute;
   width: 40px;
   height: 20px;
   margin-left: 8px;
@@ -92,7 +97,7 @@
   font-size: 12px;
   line-height: 1.16;
 
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
