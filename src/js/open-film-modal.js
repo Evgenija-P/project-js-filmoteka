@@ -1,62 +1,116 @@
 import { fetchFilmDetailsById } from './fetch-film-details';
+import noPosterUrl from '../images/foto.jpg';
+import closeBtnIcon from '../images/icon/symbol-defs.svg';
+import { dataSaveQueue } from './add-queue';
+import { dataSaveWatch } from './add-watch';
 
 const refs = {
-	galleryBox: document.querySelector('.gallery__box'),
-	filmModal: document.querySelector('.film-modal'),
-	modal: document.querySelector('.modal'),
-	filmArticle: document.querySelector('.film'),
+  galleryBox: document.querySelector('.gallery__box'),
+  filmModal: document.querySelector('[data-modal]'),
 };
 
-console.log('film article: ', refs.filmArticle);
+let filmDetails = {};
+const cash = [];
 
 // -------------EVENT LISTENERS-------------
 
 refs.galleryBox.addEventListener('click', onGalleryBoxClick);
+refs.filmModal.addEventListener('click', onBackdropModalClick);
 
 // -------------EVENT HANDLERS-------------
 
-function onGalleryBoxClick(event) {
-	if (event.target.classList.contains('gallery__box')) {
-		return;
-	}
-	const filmId = event.target.closest('.card').id;
+async function onGalleryBoxClick(event) {
+  if (event.target.classList.contains('gallery__box')) {
+    return;
+  }
 
-	fetchFilmDetailsById(filmId)
-		.then(filmDetails => {
-			clearFilmModalMarkup();
-			renderFilmModal(filmDetails);
-			refs.modal.classList.remove('is-hidden');
-		})
-		.catch(err => {
-			console.log(err.message);
-			console.log(err.code);
-		});
+  const filmId = Number(event.target.closest('.card').id);
+
+  let cashedFilmDetails = cash.find(film => film.id === filmId);
+
+  if (cashedFilmDetails) {
+    filmDetails = cashedFilmDetails;
+  } else {
+    try {
+      filmDetails = await fetchFilmDetailsById(filmId);
+    } catch (err) {
+      console.log(err.message);
+      console.log(err.code);
+    }
+
+    cash.push(filmDetails);
+  }
+
+  clearFilmModalMarkup();
+  renderFilmModal(filmDetails);
+  eventListenersReistration();
+  openModal();
+  window.addEventListener('keydown', onEscKeyPress);
 }
 
+function openModal() {
+  refs.filmModal.classList.remove('is-hidden');
+}
+
+function closeModal() {
+  refs.filmModal.classList.add('is-hidden');
+  window.removeEventListener('keydown', onEscKeyPress);
+}
+
+function onEscKeyPress(e) {
+  if (e.code === 'Escape') {
+    closeModal();
+  }
+}
+
+function onBackdropModalClick(e) {
+  if (e.currentTarget === e.target) {
+    closeModal();
+  }
+}
+
+function onAddQueqeBtn() {
+  dataSaveQueue(filmDetails);
+}
+
+function onAddWatchBtn() {
+  dataSaveWatch(filmDetails);
+}
+
+window.loadNoPoster = function (img) {
+  img.src = noPosterUrl;
+};
+
 // -------------FUNCTIONS-------------
-export let egg = {};
+
 function createFilmModalMarkup(data) {
-	const {
-		poster_path,
-		title,
-		vote_average,
-		vote_count,
-		popularity,
-		original_title,
-		genres,
-		overview,
-	} = data;
-	egg = data;
-	console.log(egg);
-	console.log('poster path', poster_path);
+  const {
+    poster_path,
+    title,
+    vote_average,
+    vote_count,
+    popularity,
+    original_title,
+    genres,
+    overview,
+  } = data;
 
-	return `
-      <img
-          class="film__image"
-          src="https://image.tmdb.org/t/p/w400${poster_path}"
-          alt="Film Image"
-        />
+  const posterUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
 
+  return `
+  <div class="film-modal">
+    <button class="button-close" type="button" button-modal-close>
+      <svg class="icon-close">
+        <use href="${closeBtnIcon}#icon-close"></use>
+      </svg>
+    </button>
+    <img
+      class="film__image"
+      src="${posterUrl}"
+      alt="Film Image"
+      onerror="loadNoPoster(this)"
+    />
+    <article class="film">
       <div class="film__content">
         <h2 class="film__title">${title}</h2>
 
@@ -65,7 +119,9 @@ function createFilmModalMarkup(data) {
             <p class="film-info__lable">Vote / Votes</p>
 
             <div class="film-vote">
-              <span class="film-vote__lable film-vote__lable--orange">${vote_average}</span>
+              <span class="film-vote__lable film-vote__lable--orange"
+                >${vote_average}</span
+              >
               <span>/</span>
               <span class="film-vote__lable">${vote_count}</span>
             </div>
@@ -85,47 +141,56 @@ function createFilmModalMarkup(data) {
 
           <li class="film-info__item">
             <p class="film-info__lable">Genre</p>
-            <span class="film-info__text">${genres
-			.map(genre => genre.name)
-			.join(', ')}</span>
+            <span class="film-info__text"
+              >${genres.map(genre => genre.name).join(', ')}</span
+            >
           </li>
         </ul>
 
         <div class="film-description">
           <h3 class="film-description__title">About</h3>
-          <p class="film-description__text">
-            ${overview}
-          </p>
+          <p class="film-description__text">${overview}</p>
         </div>
-
-        <ul class="film-button">
-          <li class="film-button__item">
-            <button
-              class="film-button__primary film-button__primary--active"
-              type="button"
-			  button-add-watch
-            >
-              Add to Watched
-            </button>
-          </li>
-
-          <li class="film-button__item">
-            <button class="film-button__primary" type="button"
-			button-add-queue>
-              Add to Queue
-            </button>
-          </li>
-        </ul>
       </div>
+      <ul class="film-button">
+        <li class="film-button__item">
+          <button
+            class="film-button__primary film-button__primary--active"
+            type="button"
+            button-add-watch
+          >
+            Add to Watched
+          </button>
+        </li>
+
+        <li class="film-button__item">
+          <button class="film-button__primary" type="button" button-add-queue>
+            Add to Queue
+          </button>
+        </li>
+      </ul>
     </article>
+  </div>
 `;
 }
 
 function clearFilmModalMarkup() {
-	refs.filmArticle.innerHTML = '';
+  refs.filmModal.innerHTML = '';
 }
 
 function renderFilmModal(data) {
-	const fiimModalMarkup = createFilmModalMarkup(data);
-	refs.filmArticle.insertAdjacentHTML('beforeend', fiimModalMarkup);
+  const fiimModalMarkup = createFilmModalMarkup(data);
+  refs.filmModal.insertAdjacentHTML('beforeend', fiimModalMarkup);
+}
+
+function eventListenersReistration() {
+  const closeBtn = document.querySelector('[button-modal-close]');
+  const addQueqeBtn = document.querySelector('[button-add-queue]');
+  const addWatchBtn = document.querySelector('[button-add-watch]');
+
+  closeBtn.addEventListener('click', closeModal);
+
+  addQueqeBtn.addEventListener('click', onAddQueqeBtn);
+
+  addWatchBtn.addEventListener('click', onAddWatchBtn);
 }
