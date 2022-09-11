@@ -1,52 +1,48 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Library</title>
-    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
 
-    <!-- normalize -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
-      integrity="sha512-wpPYUAdjBVSE4KJnH1VR1HeZfpl1ub8YT/NKx4PuQ5NmX2tKuGu6U/JRp5y+Y8XG2tV+wKQpNHVUX03MfMFn9Q=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <!-- scss -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Library</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="./sass/index.scss" />
-  </head>
+  <!-- normalize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
+    integrity="sha512-wpPYUAdjBVSE4KJnH1VR1HeZfpl1ub8YT/NKx4PuQ5NmX2tKuGu6U/JRp5y+Y8XG2tV+wKQpNHVUX03MfMFn9Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- scss -->
 
-  <body>
-    <!--header-->
-    <include src="./partials/header-mylibrary.html"></include>
+  <link rel="stylesheet" href="./sass/index.scss" />
+</head>
 
-    <main>
-      <!-- hero -->
-      <include src="./partials/hero-mylibrary.html"></include>
-      <include src="./partials/film-card-mylibrary.html"></include>
+<body>
+  <!--header-->
+  <include src="./partials/header-mylibrary.html"></include>
 
-      <!-- modal -->
-      <include src="./partials/film-modal.html"></include>
-      <include src="./partials/group-modal.html"></include>
+  <main>
+    <!-- hero -->
+    <include src="./partials/hero-mylibrary.html"></include>
+    <include src="./partials/film-card-mylibrary.html"></include>
 
-      <!-- footer -->
-      <include src="./partials/footer.html"></include>
-    </main>
+    <!-- modal -->
+    <include src="./partials/film-modal.html"></include>
+    <include src="./partials/group-modal.html"></include>
 
-    <!-- js -->
-    <script type="module" src="./index.js"></script>
-    <script type="module" src="./js/active-button.js"></script>
-    <script type="module" src="./js/group-modal.js"></script>
-    <script type="module" src="./js/film-modal.js"></script>
-  </body>
+    <!-- footer -->
+    <include src="./partials/footer.html"></include>
+  </main>
+
+  <!-- js -->
+  <script type="module" src="./index.js"></script>
+  <script type="module" src="./js/active-button.js"></script>
+  <script type="module" src="./js/group-modal.js"></script>
+  <script type="module" src="./js/film-modal.js"></script>
+  <script type="module" src="./js/append-my-library.js"></script>
+</body>
+
 </html>

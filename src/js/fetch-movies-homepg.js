@@ -11,7 +11,6 @@ export default class NewApi {
       `${URL}/3/trending/movie/day?api_key=${API_KEY}&page=${this.page}`
     );
     this.incrementPage();
-    console.log(response);
     return response;
   }
   incrementPage() {
