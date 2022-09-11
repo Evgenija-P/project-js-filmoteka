@@ -1,2 +1,0 @@
-!function(){var e={modalWindow:document.querySelector("[data-modal]"),buttonModalClose:document.querySelector("[button-modal-close]")},o=e.modalWindow;function t(){window.removeEventListener("keydown",n),o.classList.add("is-hidden")}function n(e){"Escape"===e.code&&t()}e.buttonModalClose.addEventListener("click",t),o.addEventListener("click",(function(e){e.currentTarget===e.target&&t()}))}();
-//# sourceMappingURL=my-library.92c7a7ac.js.map
