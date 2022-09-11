@@ -1,14 +1,15 @@
 .gallery {
-  padding: 60px 16px;
+  padding: 20px 0 40px 0;
+  @media screen and (min-width: $tablet) {
+    padding: 60px 0;
+  }
 }
 .gallery__container {
   margin-right: auto;
   margin-left: auto;
 
-  padding: 0 16px;
-  @media screen and (min-width: $mobile) and (max-width: 767px) {
-    width: 480px;
-  }
+  padding: 0 20px;
+  width: 320px;
 
   @media screen and (min-width: $tablet) {
     width: 768px;
@@ -16,40 +17,65 @@
 
   @media screen and (min-width: $desktop) {
     width: 1280px;
+    padding: 0 32px;
   }
 }
 .gallery__box {
+  padding: 0;
+  margin: 0;
+
   display: flex;
   flex-wrap: wrap;
   margin-left: -16px;
-  margin-top: -16px;
+  margin-top: -32px;
 }
 .card {
-  margin-top: 16px;
-  margin-left: 16px;
-  //flex-basis: calc(100% / 3 - 16px);
+  margin-top: 32px;
+  margin-left: 15px;
+  width: 100%;
+  @media screen and (min-width: $tablet) {
+    flex-basis: calc(100% / 2 - 16px);
+  }
+  @media screen and (min-width: $desktop) {
+    flex-basis: calc(100% / 3 - 16px);
+  }
 }
 .card__img {
-  margin-bottom: 12px;
-
-  max-width: 395px;
-  max-height: 574px;
+  width: 280px;
+  height: 398px;
+  margin-bottom: 10px;
   border-radius: 5px;
+
+  @media screen and (min-width: $tablet) {
+    width: 336px;
+    height: 455px;
+    margin-bottom: 8px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 395px;
+    height: 574px;
+    margin-bottom: 12px;
+  }
 }
 .card__wrap {
+  width: 100%;
   display: flex;
   align-items: flex-end;
 }
 
 .card__titel {
-  margin-right: 8px;
-
   font-weight: 500;
-  font-size: 20px;
-  line-height: 1.2;
+  font-size: 12px;
+  line-height: 1.33;
 
   color: $black;
   text-transform: uppercase;
+
+  @media screen and (min-width: $desktop) {
+    font-size: 20px;
+    line-height: 1.2;
+  }
 }
 .card__text {
   color: $orange;
@@ -58,6 +84,7 @@
 .cart__rating {
   width: 40px;
   height: 20px;
+  margin-left: 8px;
 
   font-weight: 500;
   font-size: 12px;
