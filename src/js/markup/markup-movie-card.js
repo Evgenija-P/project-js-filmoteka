@@ -1,5 +1,5 @@
-import { findGenresOfMovie } from './find-genres-of-popular-movies';
-import img from '../images/foto.jpg';
+import { findGenresOfMovie } from '../fetch/find-genres-of-popular-movies';
+import img from '../../images/foto.jpg';
 export function markupMovies(movies) {
   return movies
     .map(({ poster_path, title, genre_ids, release_date, id }) => {

@@ -1,5 +1,6 @@
-import NewApi from './fetch-movies-homepg';
-import { markupMovies } from './markup-movie-card';
+import NewApi from '../fetch/fetch-movies-homepg';
+import { markupMovies } from '../markup/markup-movie-card';
+
 const newApi = new NewApi();
 const refs = {
   gallery: document.querySelector('#homepage__gallery'),

@@ -1,5 +1,5 @@
 import { fatchMovies } from './fatch-movies';
-import { renderCardMovies } from './render-movies-card';
+import { renderCardMovies } from '../markup/render-movies-card';
 
 import Notiflix from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.5.min.css';

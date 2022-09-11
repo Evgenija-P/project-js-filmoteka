@@ -1,5 +1,5 @@
-import { findGenresOfMovie } from './find-genres-of-popular-movies';
-import img from '../images/foto.jpg';
+import { findGenresOfMovie } from '../fetch/find-genres-of-popular-movies';
+import img from '../../images/foto.jpg';
 const galleryContainerMovies = document.querySelector('.gallery__box');
 
 export { renderCardMovies };

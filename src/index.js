@@ -1,1 +1,9 @@
-import './js/load-more_btn';
+import './js/components/load-more_btn';
+import './js/components/button-up-down';
+import './js/components/group-modal';
+import './js/components/film-modal';
+import './js/fetch/fatch-movies';
+import './js/add/add-queue';
+import './js/fetch/search-movies';
+import './js/add/append-movie-cards';
+import './js/components/open-film-modal';

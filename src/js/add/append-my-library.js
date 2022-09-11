@@ -1,4 +1,4 @@
-import { markupMovies } from './markup-library-card';
+import { markupMovies } from '../markup/markup-library-card';
 const refs = {
   gallery: document.querySelector('#library__gallery'),
   queueBtn: document.querySelector('.queue-btn'),

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { URL, API_KEY } from './variables';
+import { URL, API_KEY } from '../utils/variables';
 
 axios.defaults.baseURL = URL;
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_KEY, URL } from './variables';
+import { API_KEY, URL } from '../utils/variables';
 
 export default class NewApi {
   constructor() {

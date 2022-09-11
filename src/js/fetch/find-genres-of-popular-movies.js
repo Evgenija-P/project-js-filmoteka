@@ -1,4 +1,4 @@
-import allGenres from './genres.json';
+import allGenres from '../genres.json';
 
 const { genres } = allGenres;
 

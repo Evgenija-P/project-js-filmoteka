@@ -1,4 +1,4 @@
-import { appendMarkupMovies } from './append-movie-cards';
+import { appendMarkupMovies } from '../add/append-movie-cards';
 
 const loadMore = document.querySelector('.load-more');
 loadMore.addEventListener('click', onLoadMore);

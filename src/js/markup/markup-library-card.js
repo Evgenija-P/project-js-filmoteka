@@ -1,4 +1,4 @@
-import img from '../images/foto.jpg';
+import img from '../../images/foto.jpg';
 
 function getGenres(genres) {
   const movieGenres = genres.map(genre => genre.name);
