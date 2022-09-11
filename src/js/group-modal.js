@@ -1,3 +1,5 @@
+// import { sonEscKeyPress, onBackdropModalClick } from './closeModal';
+
 const groupModalButton = document.querySelector(`.team-modal`);
 const closeModalButton = document.querySelector(`.group-button`);
 const backdrop = document.querySelector(`.backdrop`);
