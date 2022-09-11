@@ -12,6 +12,16 @@ export const dataSaveQueue = function (data) {
 	uniqQueueFilms = uniqBy(queueFilms, 'id');
 
 	localStorage.setItem("queue", JSON.stringify(uniqQueueFilms));
+
+	const storedFilms = JSON.parse(localStorage.queue);
+
+
+	for (var i = 0; i < storedFilms.length; i++) {
+		if (storedFilms[i].id === data.id) {
+			storedFilms.splice(i, 1);
+		}
+	}
+	localStorage.watched = JSON.stringify(storedFilms);
 }
 
 
