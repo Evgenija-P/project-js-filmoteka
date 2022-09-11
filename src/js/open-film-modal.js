@@ -1,13 +1,17 @@
 import { fetchFilmDetailsById } from './fetch-film-details';
+import noPosterUrl from '../images/foto.jpg';
 
 const refs = {
   galleryBox: document.querySelector('.gallery__box'),
   filmModal: document.querySelector('.film-modal'),
   modal: document.querySelector('.modal'),
   filmArticle: document.querySelector('.film'),
+  filmImage: document.querySelector('.film__image'),
 };
 
-console.log('film article: ', refs.filmArticle);
+window.loadNoPoster = function (img) {
+  img.src = noPosterUrl;
+};
 
 // -------------EVENT LISTENERS-------------
 
@@ -49,13 +53,14 @@ function createFilmModalMarkup(data) {
     overview,
   } = data;
 
-  console.log('poster path', poster_path);
+  const posterUrl = `https://image.tmdb.org/t/p/w500${poster_path}`;
 
   return `
       <img
           class="film__image"
-          src="https://image.tmdb.org/t/p/w400${poster_path}"
+          src="${posterUrl}"
           alt="Film Image"
+          onerror="loadNoPoster(this)"
         />
 
       <div class="film__content">
