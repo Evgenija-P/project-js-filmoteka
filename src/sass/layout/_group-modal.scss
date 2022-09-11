@@ -20,12 +20,12 @@
   transform: translate(-50%, -50%);
 
   width: 300px;
-  height: 350px;
-  padding: 10px 5px;
+  height: 580px;
+  padding: 10px;
 
   @media screen and (min-width: $tablet) {
     width: 700px;
-    height: 500px;
+    height: 450px;
   }
   @media screen and (min-width: $desktop) {
     width: 850px;
@@ -44,7 +44,11 @@
   text-transform: uppercase;
   text-align: center;
 
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: $tablet) {
+    margin-bottom: 30px;
+  }
 }
 
 .group-list {
@@ -56,6 +60,11 @@
   column-gap: 5px;
 
   @media screen and (min-width: $tablet) {
+    row-gap: 30px;
+    column-gap: 10px;
+  }
+
+  @media screen and (min-width: $desktop) {
     row-gap: 20px;
     column-gap: 10px;
   }
@@ -63,7 +72,12 @@
 
 .group-item {
   text-align: center;
-  flex-basis: calc((100% - 50px) / 6);
+  flex-basis: calc((100% - 10px) / 3);
+
+  @media screen and (min-width: $tablet) {
+    flex-basis: calc((100% - 50px) / 6);
+  }
+
   transition: transform 0.25s;
 
   &:hover,
@@ -74,19 +88,19 @@
 
 .group-picture {
   margin: 0 auto;
-  width: 50px;
-  height: 50px;
-
-  border-radius: 50%;
+  width: 60px;
+  height: 60px;
 
   @media screen and (min-width: $tablet) {
-    width: 150px;
-    height: 110px;
+    width: 80px;
+    height: 80px;
   }
   @media screen and (min-width: $desktop) {
     width: 100px;
     height: 100px;
   }
+
+  border-radius: 50%;
 }
 
 .group-button {
@@ -127,12 +141,35 @@
   margin-top: 10px;
 }
 
+.partner-name,
+.partner-position {
+  font-size: 10px;
+  line-height: 1.33;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 16px;
+  }
+}
+
+.partner-name {
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.partner-position {
+  font-style: italic;
+}
+
 .social-list {
   display: flex;
   justify-content: space-around;
-  align-items: center;
+
   margin: 0;
-  padding: 5px 0;
+  padding: 15px 0;
 }
 
 .social-item {
@@ -145,6 +182,8 @@
   left: 0;
   width: 100%;
   height: 100%;
+
+  align-items: center;
 
   background: $footer-bg;
   transform: translateY(100%);
@@ -172,11 +211,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25px;
-  height: 25px;
+  width: 15px;
+  height: 15px;
+
+  @media screen and (min-width: $tablet) {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 25px;
+    height: 25px;
+  }
 }
 
-.partner-position {
-  font-size: 12px;
-  font-style: italic;
+.about-partner,
+.social {
+  height: 50px;
+
+  @media screen and (min-width: $tablet) {
+    height: 60px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    height: 65px;
+  }
 }
