@@ -7,12 +7,14 @@
 .gallery__container {
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 40px;
 
   padding: 0 20px;
   width: 320px;
 
   @media screen and (min-width: $tablet) {
     width: 768px;
+    margin-bottom: 60px;
   }
 
   @media screen and (min-width: $desktop) {
