@@ -6,7 +6,7 @@ const buttonEL = document.querySelector('[button-add-queue]');
 let queueFilms = [];
 let uniqQueueFilms = [];
 
-const dataSave = function (data) {
+export const dataSaveQueue = function (data) {
 	queueFilms.push(data);
 
 	uniqQueueFilms = uniqBy(queueFilms, 'id');
@@ -24,5 +24,5 @@ if (localStorage.getItem("queue")) {
 buttonEL.addEventListener('click', onClickAddWatch);
 async function onClickAddWatch(e) {
 	e.preventDefault();
-	dataSave(egg);
+	dataSaveQueue(egg);
 }
