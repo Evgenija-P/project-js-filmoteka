@@ -6,7 +6,7 @@ import uniqBy from 'lodash.uniqby';
 let queueFilms = [];
 let uniqQueueFilms = [];
 
-export const dataSave = function (data) {
+export const dataSaveQueue = function (data) {
   queueFilms.push(data);
 
   uniqQueueFilms = uniqBy(queueFilms, 'id');
@@ -18,8 +18,12 @@ if (localStorage.getItem('queue')) {
   queueFilms = JSON.parse(localStorage.getItem('queue'));
 }
 
+if (localStorage.getItem('queue')) {
+  queueFilms = JSON.parse(localStorage.getItem('queue'));
+}
+
 // buttonEL.addEventListener('click', onClickAddWatch);
 // async function onClickAddWatch(e) {
-//   e.preventDefault();
-//   dataSave(egg);
+// 	e.preventDefault();
+// 	dataSaveQueue(egg);
 // }

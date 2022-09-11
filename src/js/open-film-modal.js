@@ -1,8 +1,8 @@
 import { fetchFilmDetailsById } from './fetch-film-details';
 import noPosterUrl from '../images/foto.jpg';
 import closeBtnIcon from '../images/icon/symbol-defs.svg';
-import { dataSave as saveQueueData } from './add-queue';
-import { dataSave as saveWatchData } from './add-watch';
+import { dataSaveQueue } from './add-queue';
+import { dataSaveWatch } from './add-watch';
 
 const refs = {
   galleryBox: document.querySelector('.gallery__box'),
@@ -70,11 +70,11 @@ function onBackdropModalClick(e) {
 }
 
 function onAddQueqeBtn() {
-  saveQueueData(filmDetails);
+  dataSaveQueue(filmDetails);
 }
 
 function onAddWatchBtn() {
-  saveWatchData(filmDetails);
+  dataSaveWatch(filmDetails);
 }
 
 window.loadNoPoster = function (img) {

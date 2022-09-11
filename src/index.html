@@ -6,52 +6,38 @@
     <title>Filmoteka</title>
     <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
 
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Filmoteka</title>
-  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <!-- scss -->
+    <link rel="stylesheet" href="./sass/index.scss" />
+  </head>
 
-  <!-- fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <body>
+    <!--header-->
+    <include src="./partials/header-homepage.html"></include>
 
-  <!-- scss -->
-  <link rel="stylesheet" href="./sass/index.scss" />
-</head>
+    <main>
+      <!-- hero -->
+      <include src="./partials/hero-homepage.html"></include>
+      <include src="./partials/film-card-homepage.html"></include>
+      <include src="./partials/button-up-down.html"></include>
 
-<body>
-  <!--header-->
-  <include src="./partials/header-homepage.html"></include>
+      <!-- footer -->
+      <include src="./partials/footer.html"></include>
 
-  <main>
-    <!-- hero -->
-    <include src="./partials/hero-homepage.html"></include>
-    <include src="./partials/film-card-homepage.html"></include>
-    <include src="./partials/button-up-down.html"></include>
+      <!-- modal -->
+      <include src="./partials/film-modal.html"></include>
+      <include src="./partials/group-modal.html"></include>
+    </main>
 
-    <!-- footer -->
-    <include src="./partials/footer.html"></include>
-
-    <!-- modal -->
-    <include src="./partials/film-modal.html"></include>
-    <include src="./partials/group-modal.html"></include>
-  </main>
-
-  <!-- js -->
-  <script type="module" src="./index.js"></script>
-  <!-- <script type="module" src="./js/add-watch.js"></script> -->
-  <!-- <script type="module" src="./js/add-queue.js"></script> -->
-  <script type="module" src="./js/film-modal.js"></script>
-  <script type="module" src="./js/group-modal.js"></script>
-  <script type="module" src="./js/fatch-movies.js"></script>
-  <script type="module" src="./js/search-movies.js"></script>
-  <script type="module" src="./js/open-film-modal.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script type="module" src="./js/button-up-down.js"></script>
-  <script type="module" src="./js/append-movie-cards.js"></script>
-</body>
-
+    <!-- js -->
+    <script type="module" src="./index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  </body>
 </html>
