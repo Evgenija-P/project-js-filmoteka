@@ -23,6 +23,8 @@
 .film-modal {
   position: relative;
 
+  display: flex;
+
   width: 100%;
   background-color: $white;
   margin: 20px auto 0px auto;
@@ -54,7 +56,7 @@
   // padding: 48px 20px 40px 20px;
 
   @media screen and (min-width: $tablet) {
-    flex-direction: row;
+    // flex-direction: row;
     gap: 68px;
 
     // padding: 40px 36px;
@@ -62,13 +64,18 @@
 
   @media screen and (min-width: 1024px) {
     gap: 16px;
-
+    margin-left: 16px;
     // padding: 40px 12px;
   }
 }
 
 .film__image {
   border-radius: 5px;
+
+  max-width: 375px;
+  max-height: 478px;
+
+  object-fit: cover;
 
   @media screen and (max-width: 767px) {
     width: 100%;
