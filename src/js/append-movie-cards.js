@@ -1,30 +1,25 @@
-// import { fetchMovies } from './fetch-movies-homepg';
-// import { markupMovies } from './markup-movie-card';
-// const refs = {
-//   gallery: document.querySelector('.gallery__box'),
-// };
-
-// export async function appendMarkupMovies() {
-//   try {
-//     const { data } = await fetchMovies();
-//     refs.gallery.insertAdjacentHTML('beforeend', markupMovies(data.results));
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// }
-
 import NewApi from './fetch-movies-homepg';
 import { markupMovies } from './markup-movie-card';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+
 const newApi = new NewApi();
 const refs = {
-  gallery: document.querySelector('.gallery__box'),
+  gallery: document.querySelector('#homepage__gallery'),
 };
 
 export async function appendMarkupMovies() {
   try {
+    Loading.dots({
+      svgColor: 'red',
+    });
+
     const { data } = await newApi.fetchMovies();
     refs.gallery.insertAdjacentHTML('beforeend', markupMovies(data.results));
+
+    Loading.remove();
   } catch (error) {
     console.log(error.message);
   }
 }
+
+appendMarkupMovies();
