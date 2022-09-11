@@ -1,7 +1,16 @@
 import { markupMovies } from './markup-library-card';
 const refs = {
   gallery: document.querySelector('#library__gallery'),
+  queueBtn: document.querySelector('.queue-btn'),
 };
+
+refs.queueBtn = addEventListener('click', onBtnQueue);
+
+function onBtnQueue() {
+  refs.gallery.innerHTML = '';
+  const userQueue = [...JSON.parse(localStorage.getItem('queue'))];
+  refs.gallery.innerHTML = markupMovies(userQueue);
+}
 
 function appendMoviesInLibrary() {
   if (localStorage.length === 0) {
