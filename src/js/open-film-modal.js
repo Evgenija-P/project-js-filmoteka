@@ -51,7 +51,34 @@ async function onGalleryBoxClick(event) {
 
   clearFilmModalMarkup();
   renderFilmModal(filmDetails);
-  eventListenersReistration();
+
+  const modalButtonsRefs = {
+    closeBtn: document.querySelector('[button-modal-close]'),
+    addQueqeBtn: document.querySelector('[button-add-queue]'),
+    addWatchBtn: document.querySelector('[button-add-watch]'),
+  };
+
+  modalButtonsRefs.closeBtn.addEventListener('click', closeModal);
+  modalButtonsRefs.addQueqeBtn.addEventListener('click', onAddQueqeBtn);
+  modalButtonsRefs.addWatchBtn.addEventListener('click', onAddWatchBtn);
+
+  const watchedMovies = getMovies('watched') || [];
+  const moviesInQueue = getMovies('queue') || [];
+  const isMovieWatched = watchedMovies.some(
+    movie => movie.id === filmDetails.id
+  );
+  const isMovieInQueue = moviesInQueue.some(
+    movie => movie.id === filmDetails.id
+  );
+
+  if (isMovieInQueue) {
+    disableBtn(modalButtonsRefs.addQueqeBtn);
+  }
+
+  if (isMovieWatched) {
+    disableBtn(modalButtonsRefs.addWatchBtn);
+  }
+
   openModal();
   window.addEventListener('keydown', onEscKeyPress);
 }
@@ -79,12 +106,19 @@ function onBackdropModalClick(e) {
   }
 }
 
-function onAddQueqeBtn() {
+function onAddQueqeBtn({ target }) {
+  console.log('click');
   dataSaveQueue(filmDetails);
+  disableBtn(target);
+  // enableBtn(document.querySelector('[button-add-watch]'));
 }
 
-function onAddWatchBtn() {
+function onAddWatchBtn({ target }) {
+  console.log('click');
   dataSaveWatch(filmDetails);
+  console.log('disable btn');
+  disableBtn(target);
+  // enableBtn(document.querySelector('[button-add-queue]'));
 }
 
 window.loadNoPoster = function (img) {
@@ -205,14 +239,33 @@ function renderFilmModal(data) {
   refs.filmModal.insertAdjacentHTML('beforeend', fiimModalMarkup);
 }
 
-function eventListenersReistration() {
-  const closeBtn = document.querySelector('[button-modal-close]');
-  const addQueqeBtn = document.querySelector('[button-add-queue]');
-  const addWatchBtn = document.querySelector('[button-add-watch]');
+function getLocalStorageData(key) {
+  return localStorage.getItem(key);
+}
 
-  closeBtn.addEventListener('click', closeModal);
+function deserializeData(data) {
+  let deserializedData;
 
-  addQueqeBtn.addEventListener('click', onAddQueqeBtn);
+  try {
+    deserializedData = JSON.parse(data);
+  } catch (err) {
+    console.log('ERROR: ', err.message);
+    console.log('ERROR CODE: ', err.code);
+  }
 
-  addWatchBtn.addEventListener('click', onAddWatchBtn);
+  return deserializedData;
+}
+
+function getMovies(movieStatus) {
+  return deserializeData(getLocalStorageData(movieStatus));
+}
+
+function disableBtn(btn) {
+  btn.disabled = true;
+  btn.classList.add('is-disabled');
+}
+
+function enableBtn(btn) {
+  btn.disabled = false;
+  btn.classList.remove('is-disabled');
 }
