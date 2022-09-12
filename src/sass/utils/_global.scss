@@ -1,32 +1,19 @@
-// html {
-//   position: relative;
-//   min-height: 100%;
-// }
-
-// body {
-//   /* Margin bottom by footer height */
-//   margin-bottom: 100px;
-
-//   @media screen and (min-width: $tablet) {
-//     margin-bottom: 79px;
-//   }
-//   @media screen and (min-width: $desktop) {
-//     margin-bottom: 77px;
-//   }
-// }
-
-// .footer {
-//   position: absolute;
-//   bottom: 0;
-//   width: 100%;
-//   /* Set the fixed height of the footer here */
-//   height: 60px;
-//   background-color: #f5f5f5;
-// }
+html {
+  position: relative;
+  min-height: 100%;
+}
 
 body {
-  margin: 0;
+  /* Margin bottom by footer height */
   font-family: 'Roboto', sans-serif;
+  margin-bottom: 100px;
+
+  @media screen and (min-width: $tablet) {
+    margin-bottom: 79px;
+  }
+  @media screen and (min-width: $desktop) {
+    margin-bottom: 77px;
+  }
 }
 
 p,
