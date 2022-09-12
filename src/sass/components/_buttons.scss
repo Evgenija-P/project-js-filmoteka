@@ -39,18 +39,10 @@
 }
 
 // все остальные оранжевые кнопки макета
-.button-orange,
-.load-more {
+.button-orange {
   @extend %button;
 
   background-color: $orange-bg;
-}
-
-.load-more {
-  width: 148px;
-  height: 42px;
-  display: block;
-  margin: 0 auto;
 }
 
 //кнопки в панели меню
