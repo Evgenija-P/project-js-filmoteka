@@ -12,10 +12,6 @@ export async function appendMarkupMovies() {
   try {
     const { data } = await newApi.fetchMovies();
     refs.gallery.insertAdjacentHTML('beforeend', markupMovies(data.results));
-    console.log('ww', data);
-
-    pagination(data.page, data.total_pages);
-    Loading.remove();
   } catch (error) {
     console.log(error.message);
   }
@@ -23,7 +19,5 @@ export async function appendMarkupMovies() {
 Loading.dots({
   svgColor: 'red',
 });
-
 appendMarkupMovies();
-
 Loading.remove();
