@@ -110,7 +110,7 @@ function createFilmModalMarkup(data) {
       alt="Film Image"
       onerror="loadNoPoster(this)"
     />
-    <article class="film">
+    <article>
       <div class="film__content">
         <h2 class="film__title">${title}</h2>
 
@@ -152,10 +152,11 @@ function createFilmModalMarkup(data) {
           <p class="film-description__text">${overview}</p>
         </div>
       </div>
+
       <ul class="film-button">
         <li class="film-button__item">
           <button
-            class="film-button__primary film-button__primary--active"
+            class="film-button__primary"
             type="button"
             button-add-watch
           >
