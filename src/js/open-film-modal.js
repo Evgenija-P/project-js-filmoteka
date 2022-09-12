@@ -3,6 +3,10 @@ import noPosterUrl from '../images/foto.jpg';
 import closeBtnIcon from '../images/icon/symbol-defs.svg';
 import { dataSaveQueue, dataSaveWatch } from './add-watch_queue';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { renderMyLibraryQueue } from './renderMyLibraryQueue';
+import { renderMyLibraryWatched } from './renderMyLibraryWatched';
+
+// ИНИЦИАЛИЗАЦИЯ ОБЪЕКТА ССЫЛОК НА ЭЛЕМЕНТЫ РАЗМЕТКИ
 
 const refs = {
   galleryBox: document.querySelector('.gallery__box'),
@@ -13,12 +17,14 @@ const refs = {
 let filmDetails = {};
 const cash = [];
 
-// -------------EVENT LISTENERS-------------
+// -------------СЛУШАТЕЛИ СОБЫТИЙ-------------
 
 refs.galleryBox.addEventListener('click', onGalleryBoxClick);
 refs.filmModal.addEventListener('click', onBackdropModalClick);
 
-// -------------EVENT HANDLERS-------------
+// -------------ОБРАБОТЧИКИ СОБЫТИЙ-------------
+
+// ------<Обработчик клика по карточке фильма>------
 
 async function onGalleryBoxClick(event) {
   if (event.target.classList.contains('gallery__box')) {
@@ -32,6 +38,8 @@ async function onGalleryBoxClick(event) {
   Loading.dots({
     svgColor: 'red',
   });
+
+  // ------Получение данных с API/CASH------
 
   if (cashedFilmDetails) {
     filmDetails = cashedFilmDetails;
@@ -48,8 +56,12 @@ async function onGalleryBoxClick(event) {
 
   Loading.remove();
 
+  // ------Рендер модального окна------
+
   clearFilmModalMarkup();
   renderFilmModal(filmDetails);
+
+  // ------Инициализация объекта ссылок на отрендеренные кнопки------
 
   const modalButtonsRefs = {
     closeBtn: document.querySelector('[button-modal-close]'),
@@ -57,18 +69,25 @@ async function onGalleryBoxClick(event) {
     addWatchBtn: document.querySelector('[button-add-watch]'),
   };
 
-  modalButtonsRefs.closeBtn.addEventListener('click', closeModal);
+  // ------Регистрация слушателей событий на отрендеренных кнопках------
+
+  modalButtonsRefs.closeBtn.addEventListener('click', onCloseModal);
   modalButtonsRefs.addQueqeBtn.addEventListener('click', onAddQueqeBtn);
   modalButtonsRefs.addWatchBtn.addEventListener('click', onAddWatchBtn);
 
+  // ------Проверка на наличие фильма в localStorage------
+
   const watchedMovies = getMovies('watched') || [];
   const moviesInQueue = getMovies('queue') || [];
+
   const isMovieWatched = watchedMovies.some(
     movie => movie.id === filmDetails.id
   );
   const isMovieInQueue = moviesInQueue.some(
     movie => movie.id === filmDetails.id
   );
+
+  // ------Отключение кнопок по условию------
 
   if (isMovieInQueue) {
     disableBtn(modalButtonsRefs.addQueqeBtn);
@@ -78,16 +97,18 @@ async function onGalleryBoxClick(event) {
     disableBtn(modalButtonsRefs.addWatchBtn);
   }
 
-  openModal();
-  window.addEventListener('keydown', onEscKeyPress);
-}
+  // ------Открытие модального окна------
 
-function openModal() {
+  onOpenModal();
+  window.addEventListener('keydown', onEscKeyPress);
+} // ------</Обработчик клика по карточке фильма>------
+
+function onOpenModal() {
   refs.filmModal.classList.remove('is-hidden');
   disableScroll();
 }
 
-function closeModal() {
+function onCloseModal() {
   refs.filmModal.classList.add('is-hidden');
   window.removeEventListener('keydown', onEscKeyPress);
   enableScroll();
@@ -95,24 +116,38 @@ function closeModal() {
 
 function onEscKeyPress(e) {
   if (e.code === 'Escape') {
-    closeModal();
+    onCloseModal();
   }
 }
 
 function onBackdropModalClick(e) {
   if (e.currentTarget === e.target) {
-    closeModal();
+    onCloseModal();
   }
 }
 
 function onAddQueqeBtn({ target }) {
   dataSaveQueue(filmDetails);
+  if (window.location.pathname === '/my-library.html') {
+    if (document.querySelector('.watched-btn').classList.contains('active')) {
+      renderMyLibraryWatched();
+    } else {
+      renderMyLibraryQueue();
+    }
+  }
   disableBtn(target);
   enableBtn(document.querySelector('[button-add-watch]'));
 }
 
 function onAddWatchBtn({ target }) {
   dataSaveWatch(filmDetails);
+  if (window.location.pathname === '/my-library.html') {
+    if (document.querySelector('.watched-btn').classList.contains('active')) {
+      renderMyLibraryWatched();
+    } else {
+      renderMyLibraryQueue();
+    }
+  }
   disableBtn(target);
   enableBtn(document.querySelector('[button-add-queue]'));
 }
@@ -132,8 +167,9 @@ function enableScroll() {
   refs.body.style.paddingRight = 0;
 }
 
-// -------------FUNCTIONS-------------
+// -------------ФУНКЦИИ-------------
 
+// ------Создание разметки модального окна------
 function createFilmModalMarkup(data) {
   const {
     poster_path,
