@@ -18,7 +18,5 @@ export async function appendMarkupMovies() {
 Loading.dots({
   svgColor: 'red',
 });
-
 appendMarkupMovies();
-
 Loading.remove();
