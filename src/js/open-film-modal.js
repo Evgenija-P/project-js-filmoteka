@@ -8,6 +8,7 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
 const refs = {
   galleryBox: document.querySelector('.gallery__box'),
   filmModal: document.querySelector('[data-modal]'),
+  body: document.querySelector('body'),
 };
 
 let filmDetails = {};
@@ -57,11 +58,13 @@ async function onGalleryBoxClick(event) {
 
 function openModal() {
   refs.filmModal.classList.remove('is-hidden');
+  disableScroll();
 }
 
 function closeModal() {
   refs.filmModal.classList.add('is-hidden');
   window.removeEventListener('keydown', onEscKeyPress);
+  enableScroll();
 }
 
 function onEscKeyPress(e) {
@@ -87,6 +90,17 @@ function onAddWatchBtn() {
 window.loadNoPoster = function (img) {
   img.src = noPosterUrl;
 };
+
+function disableScroll() {
+  let paddingOffset = window.innerWidth - refs.body.offsetWidth + 'px';
+  refs.body.classList.add('disable-scroll');
+  refs.body.style.paddingRight = paddingOffset;
+}
+
+function enableScroll() {
+  refs.body.classList.remove('disable-scroll');
+  refs.body.style.paddingRight = 0;
+}
 
 // -------------FUNCTIONS-------------
 
