@@ -263,3 +263,14 @@
   transition-duration: 250ms;
   transition-timing-function: ease;
 }
+
+.is-disabled {
+  background-color: rgb(180, 180, 180);
+  color: white;
+  border: 1px solid rgb(180, 180, 180);
+}
+
+.is-disabled:hover {
+  background-color: rgb(180, 180, 180);
+  border: 1px solid rgb(180, 180, 180);
+}
