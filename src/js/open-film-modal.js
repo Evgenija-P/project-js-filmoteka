@@ -1,8 +1,7 @@
 import { fetchFilmDetailsById } from './fetch-film-details';
 import noPosterUrl from '../images/foto.jpg';
 import closeBtnIcon from '../images/icon/symbol-defs.svg';
-import { dataSaveQueue } from './add-queue';
-import { dataSaveWatch } from './add-watch';
+import { dataSaveQueue, dataSaveWatch } from './add-watch_queue';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const refs = {
@@ -107,18 +106,15 @@ function onBackdropModalClick(e) {
 }
 
 function onAddQueqeBtn({ target }) {
-  console.log('click');
   dataSaveQueue(filmDetails);
   disableBtn(target);
-  // enableBtn(document.querySelector('[button-add-watch]'));
+  enableBtn(document.querySelector('[button-add-watch]'));
 }
 
 function onAddWatchBtn({ target }) {
-  console.log('click');
   dataSaveWatch(filmDetails);
-  console.log('disable btn');
   disableBtn(target);
-  // enableBtn(document.querySelector('[button-add-queue]'));
+  enableBtn(document.querySelector('[button-add-queue]'));
 }
 
 window.loadNoPoster = function (img) {
