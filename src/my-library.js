@@ -1,10 +1,10 @@
 import './js/active-button';
-import './js/group-modal';
-import './js/film-modal';
+import './js/add-watch_queue';
 import './js/append-my-library';
 import './js/button-up-down';
-import './js/add-queue';
-import './js/add-watch';
+import './js/fetch-movies';
+import './js/film-modal';
+import './js/group-modal';
 import './js/open-film-modal';
-import './js/fatch-movies';
-// import './js/search-movies';
+import './js/renderMyLibraryWatched';
+import './js/search-movies';
