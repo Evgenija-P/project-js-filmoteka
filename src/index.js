@@ -7,3 +7,4 @@ import './js/open-film-modal';
 import './js/film-modal';
 import './js/fatch-movies';
 import './js/search-movies';
+import './js/load-more_btn';
