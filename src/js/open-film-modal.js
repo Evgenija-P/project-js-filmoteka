@@ -3,6 +3,7 @@ import noPosterUrl from '../images/foto.jpg';
 import closeBtnIcon from '../images/icon/symbol-defs.svg';
 import { dataSaveQueue } from './add-queue';
 import { dataSaveWatch } from './add-watch';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const refs = {
   galleryBox: document.querySelector('.gallery__box'),
@@ -28,6 +29,10 @@ async function onGalleryBoxClick(event) {
 
   let cashedFilmDetails = cash.find(film => film.id === filmId);
 
+  Loading.dots({
+    svgColor: 'red',
+  });
+
   if (cashedFilmDetails) {
     filmDetails = cashedFilmDetails;
   } else {
@@ -40,6 +45,8 @@ async function onGalleryBoxClick(event) {
 
     cash.push(filmDetails);
   }
+
+  Loading.remove();
 
   clearFilmModalMarkup();
   renderFilmModal(filmDetails);

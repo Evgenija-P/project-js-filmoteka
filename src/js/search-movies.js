@@ -1,5 +1,6 @@
 import { fatchMovies } from './fatch-movies';
 import { renderCardMovies } from './render-movies-card';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 import Notiflix from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.5.min.css';
@@ -35,6 +36,9 @@ function onSearchMovies(event) {
     onResultSearchError();
     return;
   }
+  Loading.dots({
+    svgColor: 'red',
+  });
 
   fatchMovies(query, page).then(({ data }) => {
     console.log(data);
@@ -47,6 +51,8 @@ function onSearchMovies(event) {
       page += 1;
     }
   });
+
+  Loading.remove();
 }
 
 function onResultSearchError() {
