@@ -6,6 +6,6 @@ import './js/group-modal';
 import './js/append-movie-cards';
 import './js/open-film-modal';
 import './js/film-modal';
-import './js/fatch-movies';
+import './js/fetch-movies';
 import './js/search-movies';
 import './js/load-more_btn';

@@ -6,5 +6,7 @@ import './js/button-up-down';
 import './js/add-queue';
 import './js/add-watch';
 import './js/open-film-modal';
-import './js/fatch-movies';
-// import './js/search-movies';
+
+import './js/fetch-movies';
+import './js/search-movies';
+
