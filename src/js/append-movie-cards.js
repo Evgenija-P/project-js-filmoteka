@@ -1,6 +1,7 @@
 import NewApi from './fetch-movies-homepg';
 import { markupMovies } from './markup-movie-card';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { pagination } from './pagination';
 
 const newApi = new NewApi();
 const refs = {
@@ -11,6 +12,10 @@ export async function appendMarkupMovies() {
   try {
     const { data } = await newApi.fetchMovies();
     refs.gallery.insertAdjacentHTML('beforeend', markupMovies(data.results));
+    console.log('ww', data);
+
+    pagination(data.page, data.total_pages);
+    Loading.remove();
   } catch (error) {
     console.log(error.message);
   }
