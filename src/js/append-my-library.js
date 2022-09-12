@@ -1,4 +1,16 @@
 import { markupMovies } from './markup-library-card';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+
+window.addEventListener('load', () => {
+  Loading.dots({
+    svgColor: 'red',
+  });
+  appendMoviesInLibrary();
+
+  setTimeout(() => {
+    Loading.remove();
+  }, 300);
+});
 
 const refs = {
   gallery: document.querySelector('#library__gallery'),
@@ -20,5 +32,3 @@ function appendMoviesInLibrary() {
     refs.watchedBtn.classList.add('active');
   }
 }
-
-appendMoviesInLibrary();

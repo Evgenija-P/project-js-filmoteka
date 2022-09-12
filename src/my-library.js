@@ -8,5 +8,3 @@ import './js/add-watch';
 import './js/open-film-modal';
 
 import './js/fetch-movies';
-import './js/search-movies';
-
