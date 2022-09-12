@@ -7,7 +7,7 @@ jQuery(function () {
   if ($(window).scrollTop() <= $(document).height() - '999')
     $('#OnBottom').fadeIn('slow');
   $(window).scroll(function () {
-    if ($(window).scrollTop() >= $(document).height() - '999')
+    if ($(window).scrollTop() >= $(document).height() - '1200')
       $('#OnBottom').fadeOut('slow');
     else $('#OnBottom').fadeIn('slow');
   });
@@ -15,6 +15,6 @@ jQuery(function () {
     $('html,body').animate({ scrollTop: 0 }, 'slow');
   });
   $('#OnBottom').click(function () {
-    $('html,body').animate({ scrollTop: 0 }, 'slow');
+    $('html,body').animate({ scrollTop: $(document).height() }, 'slow');
   });
 });
