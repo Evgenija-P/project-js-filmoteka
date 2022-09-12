@@ -9,17 +9,16 @@ const refs = {
 
 export async function appendMarkupMovies() {
   try {
-    Loading.dots({
-      svgColor: 'red',
-    });
-
     const { data } = await newApi.fetchMovies();
     refs.gallery.insertAdjacentHTML('beforeend', markupMovies(data.results));
-
-    Loading.remove();
   } catch (error) {
     console.log(error.message);
   }
 }
+Loading.dots({
+  svgColor: 'red',
+});
 
 appendMarkupMovies();
+
+Loading.remove();
