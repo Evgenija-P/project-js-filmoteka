@@ -43,10 +43,10 @@ async function onGalleryBoxClick(event) {
       console.log(err.code);
     }
 
-    Loading.remove();
-
     cash.push(filmDetails);
   }
+
+  Loading.remove();
 
   clearFilmModalMarkup();
   renderFilmModal(filmDetails);
