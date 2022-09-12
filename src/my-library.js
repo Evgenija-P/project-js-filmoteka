@@ -6,7 +6,5 @@ import './js/fetch-movies';
 import './js/film-modal';
 import './js/group-modal';
 import './js/open-film-modal';
-
 import './js/fetch-movies';
-import './js/search-movies';
 import './js/renderMyLibraryWatched';
