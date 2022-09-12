@@ -14,6 +14,6 @@ export async function fetchFilmDetailsById(id) {
   const response = await axios(`/3/movie/${id}${query}`);
 
   Loading.remove();
-
+  console.log(response.data);
   return response.data;
 }
