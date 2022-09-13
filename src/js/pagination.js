@@ -1,66 +1,101 @@
-import NewApi from './fetch-movies-homepg';
-const newApi = new NewApi();
+import { FetchMoviesAPI } from './fetchMoviesAPI';
+import EventEmitter from 'events';
+
+export const searchEventEmitter = new EventEmitter();
+export const trandingEventEmitter = new EventEmitter();
 
 const paginationContainer = document.querySelector('.pagination-container');
+
 let globalCurrentPage = null;
+
 function pagination(page, totalPages) {
   const beforeToPage = page - 2;
   const beforePage = page - 1;
   const afterToPage = page + 2;
   const afterPage = page + 1;
+
   globalCurrentPage = page;
+
   let marcup = '';
   if (page > 1) {
-    marcup += '<li>&#129144;</li>';
+    marcup += '<li class="pagination-btn">&#129144;</li>';
+  } else {
+    marcup += '<li class="pagination-btn disabled" disabled>&#129144;</li>';
   }
   if (page > 1) {
-    marcup += '<li>1</li>';
+    marcup += '<li class="pagination-btn">1</li>';
   }
   if (page > 4) {
-    marcup += '<li>...</li>';
+    ``;
+    marcup += '<li class="pagination-btn">...</li>';
   }
   if (page > 3) {
-    marcup += `<li>${beforeToPage}</li>`;
+    marcup += `<li class="pagination-btn">${beforeToPage}</li>`;
   }
   if (page > 2) {
-    marcup += `<li>${beforePage}</li>`;
+    marcup += `<li class="pagination-btn">${beforePage}</li>`;
   }
-  marcup += `<li>${page}</li>`;
+  marcup += `<li class="pagination-btn">${page}</li>`;
   if (totalPages - 1 > page) {
-    marcup += `<li>${afterPage}</li>`;
+    marcup += `<li class="pagination-btn">${afterPage}</li>`;
   }
   if (totalPages - 2 > page) {
-    marcup += `<li>${afterToPage}</li>`;
+    marcup += `<li class="pagination-btn">${afterToPage}</li>`;
   }
   if (totalPages - 3 > page) {
-    marcup += `<li>...</li>`;
+    marcup += `<li class="pagination-btn">...</li>`;
   }
   if (totalPages > page) {
-    marcup += `<li>${totalPages}</li>`;
-    marcup += '<li>&#129146;</li>';
+    marcup += `<li class="pagination-btn">${totalPages}</li>`;
+    marcup += '<li class="pagination-btn">&#129146;</li>';
+  } else {
+    marcup += '<li class="pagination-btn disabled">&#129146;</li>';
   }
-  console.log(totalPages);
-  paginationContainer.innerHTML = marcup;
-}
-function onPagination(event) {
-  if (event.target.nodeName !== 'LI') {
-    return;
-  }
-  if (event.target.textContent === '...') {
-    return;
-  }
-  if (event.target.textContent === '🡸') {
-    globalCurrentPage -= 1;
 
+  // console.log(totalPages);
+  paginationContainer.innerHTML = marcup;
+
+  const containerItems = [...paginationContainer.children];
+
+  containerItems.forEach(item => {
+    if (Number(item.textContent) === globalCurrentPage) {
+      item.classList.add('current');
+    }
+  });
+}
+
+function onPagination({ target }) {
+  if (target.nodeName !== 'LI') {
     return;
   }
-  if (event.target.textContent === '🡺') {
+
+  if (target.textContent === '...') {
+    return;
+  }
+
+  if (target.textContent === '🡸') {
+    if (target.classList.contains('disabled')) {
+      return;
+    }
+    globalCurrentPage -= 1;
+    searchEventEmitter.emit('pageChange', globalCurrentPage);
+    trandingEventEmitter.emit('pageChange', page);
+    return;
+  }
+
+  if (target.textContent === '🡺') {
+    if (target.classList.contains('disabled')) {
+      return;
+    }
     globalCurrentPage += 1;
+    searchEventEmitter.emit('pageChange', globalCurrentPage);
+    trandingEventEmitter.emit('pageChange', page);
     return;
   }
-  const page = event.target.textContent;
-  console.log(event.target);
-  console.log('Текущая страница', page);
+
+  const page = Number(target.textContent);
+  searchEventEmitter.emit('pageChange', page);
+  trandingEventEmitter.emit('pageChange', page);
 }
 paginationContainer.addEventListener('click', onPagination);
 export { pagination };
