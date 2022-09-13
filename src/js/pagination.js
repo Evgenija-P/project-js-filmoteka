@@ -1,14 +1,9 @@
-import { FetchMoviesAPI } from './fetchMoviesAPI';
-import EventEmitter from 'events';
-
-export const searchEventEmitter = new EventEmitter();
-export const trandingEventEmitter = new EventEmitter();
-
 const paginationContainer = document.querySelector('.pagination-container');
+paginationContainer.addEventListener('click', onPagination);
 
-let globalCurrentPage = null;
+window.globalCurrentPage = null;
 
-function pagination(page, totalPages) {
+export function pagination(page, totalPages) {
   const beforeToPage = page - 2;
   const beforePage = page - 1;
   const afterToPage = page + 2;
@@ -52,7 +47,6 @@ function pagination(page, totalPages) {
     marcup += '<li class="pagination-btn disabled">&#129146;</li>';
   }
 
-  // console.log(totalPages);
   paginationContainer.innerHTML = marcup;
 
   const containerItems = [...paginationContainer.children];
@@ -78,8 +72,6 @@ function onPagination({ target }) {
       return;
     }
     globalCurrentPage -= 1;
-    searchEventEmitter.emit('pageChange', globalCurrentPage);
-    trandingEventEmitter.emit('pageChange', page);
     return;
   }
 
@@ -88,14 +80,7 @@ function onPagination({ target }) {
       return;
     }
     globalCurrentPage += 1;
-    searchEventEmitter.emit('pageChange', globalCurrentPage);
-    trandingEventEmitter.emit('pageChange', page);
     return;
   }
-
-  const page = Number(target.textContent);
-  searchEventEmitter.emit('pageChange', page);
-  trandingEventEmitter.emit('pageChange', page);
+  globalCurrentPage = Number(target.textContent);
 }
-paginationContainer.addEventListener('click', onPagination);
-export { pagination };

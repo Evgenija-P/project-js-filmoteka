@@ -3,6 +3,6 @@ export const URL = `https://api.themoviedb.org`;
 
 export const APIEndPoints = {
   trendingMovie: '/3/trending/movie/day',
-  searchMovie: '/search/movie',
-  movieDetails: `/movie/`,
+  searchMovie: '/3/search/movie',
+  movieDetails: `/3/movie/`,
 };

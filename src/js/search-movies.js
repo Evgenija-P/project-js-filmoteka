@@ -4,9 +4,9 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import Notiflix from 'notiflix';
 
 import { pagination } from './pagination';
-import { searchEventEmitter } from './pagination';
 import { FetchMoviesAPI } from './fetchMoviesAPI';
 import { APIEndPoints } from './variables';
+import { onTrendingPaginationClick } from './append-movie-cards';
 
 import 'notiflix/dist/notiflix-3.2.5.min.css';
 
@@ -51,15 +51,28 @@ function onSearchMovies(event) {
   });
 
   fetchMovies(query, page).then(({ data }) => {
-    console.log(data);
-
     if (data.total_results === 0) {
       onResultSearchError();
     } else {
       galleryContainerMovies.innerHTML = '';
+
       renderCardMovies(data.results);
+
+      const paginationItemsContainer = document.querySelector(
+        '.pagination-container'
+      );
+
+      paginationItemsContainer.innerHTML = '';
+      paginationItemsContainer.removeEventListener(
+        'click',
+        onTrendingPaginationClick
+      );
+      paginationItemsContainer.addEventListener(
+        'click',
+        onSearchPaginationClick
+      );
       pagination(data.page, data.total_pages);
-      searchEventEmitter.on('pageChange', onPageChange);
+
       // page += 1;
     }
   });
@@ -76,9 +89,12 @@ function onResultSearchError() {
 
 //-------Обработчик клика по кнопке с номером страницы-------
 
-async function onPageChange(event) {
-  console.log('event listener(searc)');
-  fetchSearchMoviesResultsAPI.page = event;
+export async function onSearchPaginationClick({ target }) {
+  if (target.nodeName === 'UL' || target.classList.contains('disabled')) {
+    return;
+  }
+
+  fetchSearchMoviesResultsAPI.page = globalCurrentPage;
   fetchSearchMoviesResultsAPI.query = `&query=${query}`;
   let response;
 
@@ -93,21 +109,14 @@ async function onPageChange(event) {
     console.log('ERROR CODE: ', err.code);
   }
 
-  console.log(response.data);
-
   clearGalleryMarkup();
 
   const galleryMarkup = renderCardMovies(response.data.results);
-
-  console.log('within my function');
-  console.log(response.data);
 
   pagination(response.data.page, response.data.total_pages);
 
   Loading.remove();
 }
-
-//-------Функция удаления разметки галлереи-------
 
 function clearGalleryMarkup() {
   galleryContainerMovies.innerHTML = '';

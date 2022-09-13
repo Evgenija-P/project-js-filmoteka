@@ -2,9 +2,9 @@ import NewApi from './fetch-movies-homepg';
 import { markupMovies } from './markup-movie-card';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { pagination } from './pagination';
-import { trandingEventEmitter } from './pagination';
 import { FetchMoviesAPI } from './fetchMoviesAPI';
 import { APIEndPoints } from './variables';
+import { onSearchPaginationClick } from './search-movies';
 
 const fetchTrandingMovieAPI = new FetchMoviesAPI(APIEndPoints.trendingMovie);
 
@@ -30,17 +30,32 @@ export async function appendMarkupMovies() {
 Loading.dots({
   svgColor: 'red',
 });
+
 appendMarkupMovies().then(data => {
+  const paginationItemsContainer = document.querySelector(
+    '.pagination-container'
+  );
+
+  paginationItemsContainer.innerHTML = '';
+
+  paginationItemsContainer.removeEventListener(
+    'click',
+    onSearchPaginationClick
+  );
+  paginationItemsContainer.addEventListener('click', onTrendingPaginationClick);
   pagination(data.page, data.total_pages);
-  trandingEventEmitter.on('pageChange', onPageChange);
+
   Loading.remove();
 });
 
 //-------Обработчик клика по кнопке с номером страницы-------
 
-async function onPageChange(event) {
-  console.log('event listener(trending)');
-  fetchTrandingMovieAPI.page = event;
+export async function onTrendingPaginationClick({ target }) {
+  if (target.nodeName === 'UL' || target.classList.contains('disabled')) {
+    return;
+  }
+
+  fetchTrandingMovieAPI.page = globalCurrentPage;
   let response;
 
   Loading.dots({

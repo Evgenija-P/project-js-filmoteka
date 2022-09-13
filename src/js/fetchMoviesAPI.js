@@ -15,9 +15,6 @@ export class FetchMoviesAPI {
   async fetchMovies() {
     const defaultQueryParams = `?api_key=${API_KEY}&page=${this._page}${this._query}`;
 
-    console.log('api query');
-    console.log(`${this._endPoint}${defaultQueryParams}`);
-
     const response = await axios(`${this._endPoint}${defaultQueryParams}`);
 
     return response;
