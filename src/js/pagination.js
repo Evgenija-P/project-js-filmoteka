@@ -1,3 +1,6 @@
+import NewApi from './fetch-movies-homepg';
+const newApi = new NewApi();
+
 const paginationContainer = document.querySelector('.pagination-container');
 let globalCurrentPage = null;
 function pagination(page, totalPages) {
@@ -48,6 +51,7 @@ function onPagination(event) {
   }
   if (event.target.textContent === '🡸') {
     globalCurrentPage -= 1;
+
     return;
   }
   if (event.target.textContent === '🡺') {
@@ -55,7 +59,6 @@ function onPagination(event) {
     return;
   }
   const page = event.target.textContent;
-
   console.log(event.target);
   console.log('Текущая страница', page);
 }
