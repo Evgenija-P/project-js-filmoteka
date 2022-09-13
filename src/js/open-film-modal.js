@@ -128,7 +128,7 @@ function onBackdropModalClick(e) {
 
 function onAddQueqeBtn({ target }) {
   dataSaveQueue(filmDetails);
-  if (window.location.pathname === '/my-library.html') {
+  if (window.location.pathname.includes('my-library')) {
     if (document.querySelector('.watched-btn').classList.contains('active')) {
       renderMyLibraryWatched();
     } else {
@@ -141,7 +141,7 @@ function onAddQueqeBtn({ target }) {
 
 function onAddWatchBtn({ target }) {
   dataSaveWatch(filmDetails);
-  if (window.location.pathname === '/my-library.html') {
+  if (window.location.pathname.includes('my-library')) {
     if (document.querySelector('.watched-btn').classList.contains('active')) {
       renderMyLibraryWatched();
     } else {
