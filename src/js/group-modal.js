@@ -1,5 +1,3 @@
-// import { sonEscKeyPress, onBackdropModalClick } from './closeModal';
-
 const groupModalButton = document.querySelector(`.team-modal`);
 const closeModalButton = document.querySelector(`.group-button`);
 const backdrop = document.querySelector(`.backdrop`);
@@ -10,13 +8,13 @@ closeModalButton.addEventListener(`click`, onCloseModal);
 backdrop.addEventListener(`click`, onClickBackdrop);
 
 function onOpenModal() {
-  // scrollOff();
+  scrollOff();
   backdrop.classList.remove(`is-hidden`);
   window.addEventListener('keydown', escClose);
 }
 
 function onCloseModal() {
-  // scrollOn();
+  scrollOn();
   backdrop.classList.add(`is-hidden`);
   window.removeEventListener('keydown', escClose);
 }
@@ -33,10 +31,10 @@ function escClose(e) {
   }
 }
 
-// function scrollOff() {
-//   body.classList.add('disable-scroll');
-// }
+function scrollOff() {
+  body.classList.add('disable-scroll');
+}
 
-// function scrollOn() {
-//   body.classList.remove('disable-scroll');
-// }
+function scrollOn() {
+  body.classList.remove('disable-scroll');
+}
