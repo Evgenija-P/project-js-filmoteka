@@ -3,7 +3,7 @@ import { renderMyLibraryQueue } from './renderMyLibraryQueue';
 import { renderMyLibraryWatched } from './renderMyLibraryWatched';
 import { readLocalStorageData, deserializeData } from './local-storage-API';
 
-const MOVIES_PER_PAGE = 20;
+const MOVIES_PER_PAGE = 4;
 
 // const { readLocalStorageData, deserializeData } = localStorageAPI;
 
@@ -20,7 +20,14 @@ let totalMovies = 0;
 //-------------Функция обновления фильмов в библиотеке-------------
 
 export function updateMoviesGalleryByStatus(status, pageNumber) {
-  movies = [...deserializeData(readLocalStorageData(status))];
+  const data = readLocalStorageData(status);
+
+  if (!data) {
+    return;
+  }
+  const unSerializedData = deserializeData(data);
+
+  movies = [...unSerializedData];
 
   currentPage = pageNumber || 1;
   totalMovies = movies.length;
