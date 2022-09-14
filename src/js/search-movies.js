@@ -105,10 +105,7 @@ export async function onSearchPaginationClick({ target }) {
 
   try {
     response = await fetchSearchMoviesResultsAPI.fetchMovies();
-  } catch (err) {
-    console.log('ERROR: ', err.message);
-    console.log('ERROR CODE: ', err.code);
-  }
+  } catch (err) {}
 
   clearGalleryMarkup();
 
