@@ -9,7 +9,9 @@ async function fetchMovies(query, page) {
     );
 
     return response;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export { fetchMovies };
