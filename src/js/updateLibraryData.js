@@ -34,6 +34,7 @@ export function updateMoviesGalleryByStatus(status, pageNumber) {
       renderMyLibraryQueue(splittedMovieSet.get(currentPage - 1));
       pagination(currentPage - 1, totalPages);
     } else {
+      console.log(splittedMovieSet.get(currentPage));
       renderMyLibraryQueue(splittedMovieSet.get(currentPage));
       pagination(currentPage, totalPages);
     }
