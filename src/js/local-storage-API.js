@@ -16,7 +16,10 @@ export default localStorageAPI = {
 
     try {
       deserializedData = JSON.parse(serializedData);
-    } catch (err) {}
+    } catch (err) {
+      console.log('ERROR: ', err.message);
+      console.log('ERROR CODE: ', err.code);
+    }
 
     return deserializedData;
   },

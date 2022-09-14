@@ -48,7 +48,10 @@ async function onGalleryBoxClick(event) {
   } else {
     try {
       filmDetails = await fetchFilmDetailsById(filmId);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err.message);
+      console.log(err.code);
+    }
 
     cash.push(filmDetails);
   }
@@ -279,7 +282,10 @@ function deserializeData(data) {
 
   try {
     deserializedData = JSON.parse(data);
-  } catch (err) {}
+  } catch (err) {
+    console.log('ERROR: ', err.message);
+    console.log('ERROR CODE: ', err.code);
+  }
 
   return deserializedData;
 }
