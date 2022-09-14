@@ -22,7 +22,9 @@ export async function appendMarkupMovies() {
       'beforeend',
       markupMovies(response.data.results)
     );
-  } catch (error) {}
+  } catch (error) {
+    console.log(error.message);
+  }
   return response.data;
 }
 Loading.dots({
@@ -66,7 +68,10 @@ export async function onTrendingPaginationClick({ target }) {
 
   try {
     response = await fetchTrandingMovieAPI.fetchMovies();
-  } catch (err) {}
+  } catch (err) {
+    console.log('ERROR: ', err.message);
+    console.log('ERROR CODE: ', err.code);
+  }
 
   const galleryMarkup = markupMovies(response.data.results);
   clearGalleryMarkup();

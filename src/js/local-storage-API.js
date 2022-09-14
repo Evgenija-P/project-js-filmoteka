@@ -13,9 +13,11 @@ export function serializeData(unSerializedData) {
 export function deserializeData(serializedData) {
   let deserializedData;
 
+
   try {
     deserializedData = JSON.parse(serializedData);
   } catch (err) {}
+
 
   return deserializedData;
 }
