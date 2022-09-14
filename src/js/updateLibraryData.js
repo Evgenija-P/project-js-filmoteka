@@ -5,8 +5,6 @@ import { readLocalStorageData, deserializeData } from './local-storage-API';
 
 const MOVIES_PER_PAGE = 4;
 
-// const { readLocalStorageData, deserializeData } = localStorageAPI;
-
 const paginationContainer = document.querySelector('.pagination-container');
 
 //-------------Инициализация переменных-------------
@@ -43,14 +41,9 @@ export function updateMoviesGalleryByStatus(status, pageNumber) {
       } else {
         pagination(currentPage - 1, totalPages);
       }
-      console.log('if');
-      console.log(currentPage);
     } else {
-      console.log(splittedMovieSet.get(currentPage));
       renderMyLibraryQueue(splittedMovieSet.get(currentPage));
       pagination(currentPage, totalPages);
-      console.log('else');
-      console.log(currentPage);
     }
   }
   if (status === 'watched') {
@@ -61,13 +54,10 @@ export function updateMoviesGalleryByStatus(status, pageNumber) {
       } else {
         pagination(currentPage - 1, totalPages);
       }
-      console.log('if');
       console.log(currentPage);
     } else {
       renderMyLibraryWatched(splittedMovieSet.get(currentPage));
       pagination(currentPage, totalPages);
-      console.log('else');
-      console.log(currentPage);
     }
   }
 
