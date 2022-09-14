@@ -7,3 +7,4 @@ import './js/group-modal';
 import './js/open-film-modal';
 import './js/fetch-movies';
 import './js/renderMyLibraryWatched';
+import './js/local-storage-API';
