@@ -6,6 +6,8 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { renderMyLibraryQueue } from './renderMyLibraryQueue';
 import { renderMyLibraryWatched } from './renderMyLibraryWatched';
 
+import { updateMoviesGalleryByStatus } from './updateLibraryData';
+
 // ИНИЦИАЛИЗАЦИЯ ОБЪЕКТА ССЫЛОК НА ЭЛЕМЕНТЫ РАЗМЕТКИ
 
 const refs = {
@@ -130,9 +132,9 @@ function onAddQueqeBtn({ target }) {
   dataSaveQueue(filmDetails);
   if (window.location.pathname.includes('my-library')) {
     if (document.querySelector('.watched-btn').classList.contains('active')) {
-      renderMyLibraryWatched();
+      updateMoviesGalleryByStatus('watched', globalCurrentPage);
     } else {
-      renderMyLibraryQueue();
+      updateMoviesGalleryByStatus('queue', globalCurrentPage);
     }
   }
   disableBtn(target);
@@ -143,9 +145,9 @@ function onAddWatchBtn({ target }) {
   dataSaveWatch(filmDetails);
   if (window.location.pathname.includes('my-library')) {
     if (document.querySelector('.watched-btn').classList.contains('active')) {
-      renderMyLibraryWatched();
+      updateMoviesGalleryByStatus('watched', globalCurrentPage);
     } else {
-      renderMyLibraryQueue();
+      updateMoviesGalleryByStatus('queue', globalCurrentPage);
     }
   }
   disableBtn(target);

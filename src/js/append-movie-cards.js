@@ -7,7 +7,6 @@ import { APIEndPoints } from './variables';
 import { onSearchPaginationClick } from './search-movies';
 
 const fetchTrandingMovieAPI = new FetchMoviesAPI(APIEndPoints.trendingMovie);
-let currentPage;
 
 const newApi = new NewApi();
 const refs = {

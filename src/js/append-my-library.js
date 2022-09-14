@@ -1,22 +1,24 @@
 import { markupMovies } from './markup-library-card';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
-
-window.addEventListener('load', () => {
-  Loading.dots({
-    svgColor: 'red',
-  });
-  appendMoviesInLibrary();
-
-  setTimeout(() => {
-    Loading.remove();
-  }, 300);
-});
+import { updateMoviesGalleryByStatus } from './updateLibraryData';
 
 const refs = {
   gallery: document.querySelector('#library__gallery'),
   watchedBtn: document.querySelector('.watched-btn'),
   queueBtn: document.querySelector('.queue-btn'),
 };
+
+window.addEventListener('load', () => {
+  Loading.dots({
+    svgColor: 'red',
+  });
+  // appendMoviesInLibrary();
+  refs.watchedBtn.classList.add('active');
+  updateMoviesGalleryByStatus('watched');
+  setTimeout(() => {
+    Loading.remove();
+  }, 300);
+});
 
 function appendMoviesInLibrary() {
   const userMoviesWatched = JSON.parse(localStorage.getItem('watched'));
