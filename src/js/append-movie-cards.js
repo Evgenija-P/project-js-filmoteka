@@ -7,6 +7,7 @@ import { APIEndPoints } from './variables';
 import { onSearchPaginationClick } from './search-movies';
 
 const fetchTrandingMovieAPI = new FetchMoviesAPI(APIEndPoints.trendingMovie);
+let currentPage;
 
 const newApi = new NewApi();
 const refs = {
@@ -51,7 +52,11 @@ appendMarkupMovies().then(data => {
 //-------Обработчик клика по кнопке с номером страницы-------
 
 export async function onTrendingPaginationClick({ target }) {
-  if (target.nodeName === 'UL' || target.classList.contains('disabled')) {
+  if (
+    target.nodeName === 'UL' ||
+    target.classList.contains('disabled') ||
+    Number(target.textContent) === fetchTrandingMovieAPI.page
+  ) {
     return;
   }
 
