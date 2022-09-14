@@ -13,7 +13,6 @@ const paginationContainer = document.querySelector('.pagination-container');
 
 let movies = [];
 let splittedMovieSet;
-MoviesPortion = [];
 let currentPage = 1;
 let totalPages = 0;
 let totalMovies = 0;
