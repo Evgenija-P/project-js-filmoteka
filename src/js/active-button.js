@@ -1,23 +1,41 @@
-import { renderMyLibraryWatched } from './renderMyLibraryWatched';
-import { renderMyLibraryQueue } from './renderMyLibraryQueue';
+import localStorageAPI from './local-storage-API';
+import { updateMoviesGalleryByStatus } from './updateLibraryData';
 
 const refs = {
   gallery: document.querySelector('#library__gallery'),
   watchedBtn: document.querySelector('.watched-btn'),
   queueBtn: document.querySelector('.queue-btn'),
+  paginationContainer: document.querySelector('.pagination-container'),
 };
 
 refs.watchedBtn.addEventListener('click', onWatchedBtnClick);
 refs.queueBtn.addEventListener('click', onQueueBtnClick);
 
-function onWatchedBtnClick() {
+//-------------Обработчкик событий клика по кнопке просмотренных фильмов-------------
+
+function onWatchedBtnClick({ target }) {
+  if (target.classList.contains('active')) {
+    return;
+  }
+
   refs.watchedBtn.classList.add('active');
   refs.queueBtn.classList.remove('active');
-  renderMyLibraryWatched();
+
+  console.log(target.dataset.status);
+
+  updateMoviesGalleryByStatus(target.dataset.status);
 }
 
-function onQueueBtnClick() {
+//-------------Обработчкик событий клика по кнопке фильмов в очереди-------------
+
+function onQueueBtnClick({ target }) {
+  if (target.classList.contains('active')) {
+    return;
+  }
   refs.queueBtn.classList.add('active');
   refs.watchedBtn.classList.remove('active');
-  renderMyLibraryQueue();
+
+  console.log(target.dataset);
+
+  updateMoviesGalleryByStatus(target.dataset.status);
 }

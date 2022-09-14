@@ -87,7 +87,11 @@ function onResultSearchError() {
 //-------Обработчик клика по кнопке с номером страницы-------
 
 export async function onSearchPaginationClick({ target }) {
-  if (target.nodeName === 'UL' || target.classList.contains('disabled')) {
+  if (
+    target.nodeName === 'UL' ||
+    target.classList.contains('disabled') ||
+    Number(target.textContent) === fetchSearchMoviesResultsAPI.page
+  ) {
     return;
   }
 
