@@ -39,9 +39,8 @@ function onSearchMovies(event) {
   event.preventDefault();
 
   query = event.currentTarget.elements.text.value;
-  console.log(query);
 
-  if (query === '') {
+  if (!query) {
     onResultSearchError();
     return;
   }
@@ -51,10 +50,10 @@ function onSearchMovies(event) {
   });
 
   fetchMovies(query, page).then(({ data }) => {
-    if (data.total_results === 0) {
+    if (!data.total_results) {
       onResultSearchError();
     } else {
-      galleryContainerMovies.innerHTML = '';
+      clearGalleryMarkup();
 
       renderCardMovies(data.results);
 
@@ -72,8 +71,6 @@ function onSearchMovies(event) {
         onSearchPaginationClick
       );
       pagination(data.page, data.total_pages);
-
-      // page += 1;
     }
   });
 
