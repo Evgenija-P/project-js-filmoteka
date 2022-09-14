@@ -90,7 +90,7 @@ function onQueuePaginationItemClick({ target }) {
 function splitSet(dataSet, chunckSize, totalSize) {
   const spliettedSet = new Map();
 
-  for (i = 0; i < totalSize; i++) {
+  for (let i = 0; i < totalSize; i++) {
     spliettedSet.set(
       i + 1,
       dataSet.slice(i * chunckSize, i * chunckSize + chunckSize)
