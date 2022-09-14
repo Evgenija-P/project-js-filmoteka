@@ -1,23 +1,21 @@
-export default localStorageAPI = {
-  readLocalStorageData(key) {
-    return localStorage.getItem(key);
-  },
+export function readLocalStorageData(key) {
+  return localStorage.getItem(key);
+}
 
-  createLocalStorageData(serializedData, key) {
-    localStorage.setItem(key, serializedData);
-  },
+export function createLocalStorageData(serializedData, key) {
+  localStorage.setItem(key, serializedData);
+}
 
-  serializeData(unSerializedData) {
-    return JSON.stringify(data);
-  },
+export function serializeData(unSerializedData) {
+  return JSON.stringify(data);
+}
 
-  deserializeData(serializedData) {
-    let deserializedData;
+export function deserializeData(serializedData) {
+  let deserializedData;
 
-    try {
-      deserializedData = JSON.parse(serializedData);
-    } catch (err) {}
+  try {
+    deserializedData = JSON.parse(serializedData);
+  } catch (err) {}
 
-    return deserializedData;
-  },
-};
+  return deserializedData;
+}

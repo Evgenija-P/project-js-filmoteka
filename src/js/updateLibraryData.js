@@ -1,11 +1,11 @@
-import localStorageAPI from './local-storage-API';
 import { pagination } from './pagination';
 import { renderMyLibraryQueue } from './renderMyLibraryQueue';
 import { renderMyLibraryWatched } from './renderMyLibraryWatched';
+import { readLocalStorageData, deserializeData } from './local-storage-API';
 
 const MOVIES_PER_PAGE = 20;
 
-const { readLocalStorageData, deserializeData } = localStorageAPI;
+// const { readLocalStorageData, deserializeData } = localStorageAPI;
 
 const paginationContainer = document.querySelector('.pagination-container');
 
