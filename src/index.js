@@ -5,3 +5,4 @@ import './js/button-up-down';
 import './js/fetch-movies';
 import './js/group-modal';
 import './js/open-film-modal';
+import './js/local-storage-API';
