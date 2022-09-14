@@ -10,7 +10,7 @@ export const dataSaveWatch = function (data) {
   if (localStorage.queue) {
     const storedFilms = JSON.parse(localStorage.queue);
 
-    for (var i = 0; i < storedFilms.length; i++) {
+    for (let i = 0; i < storedFilms.length; i++) {
       if (storedFilms[i].id === data.id) {
         storedFilms.splice(i, 1);
         queueFilms = [];
@@ -37,7 +37,7 @@ export const dataSaveQueue = function (data) {
   if (localStorage.watched) {
     const storedFilms = JSON.parse(localStorage.watched);
 
-    for (var i = 0; i < storedFilms.length; i++) {
+    for (let i = 0; i < storedFilms.length; i++) {
       if (storedFilms[i].id === data.id) {
         storedFilms.splice(i, 1);
         watchFilms = [];

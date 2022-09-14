@@ -21,8 +21,6 @@ function onWatchedBtnClick({ target }) {
   refs.watchedBtn.classList.add('active');
   refs.queueBtn.classList.remove('active');
 
-  console.log(target.dataset.status);
-
   updateMoviesGalleryByStatus(target.dataset.status);
 }
 
@@ -34,8 +32,6 @@ function onQueueBtnClick({ target }) {
   }
   refs.queueBtn.classList.add('active');
   refs.watchedBtn.classList.remove('active');
-
-  console.log(target.dataset);
 
   updateMoviesGalleryByStatus(target.dataset.status);
 }
