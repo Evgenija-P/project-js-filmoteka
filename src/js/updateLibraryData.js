@@ -31,20 +31,36 @@ export function updateMoviesGalleryByStatus(status, pageNumber) {
   if (status === 'queue') {
     if (!splittedMovieSet.get(currentPage) && currentPage) {
       renderMyLibraryQueue(splittedMovieSet.get(currentPage - 1));
-      pagination(currentPage - 1, totalPages);
+      if (currentPage <= 1) {
+        paginationContainer.innerHTML = '';
+      } else {
+        pagination(currentPage - 1, totalPages);
+      }
+      console.log('if');
+      console.log(currentPage);
     } else {
       console.log(splittedMovieSet.get(currentPage));
       renderMyLibraryQueue(splittedMovieSet.get(currentPage));
       pagination(currentPage, totalPages);
+      console.log('else');
+      console.log(currentPage);
     }
   }
   if (status === 'watched') {
     if (!splittedMovieSet.get(currentPage) && currentPage) {
       renderMyLibraryWatched(splittedMovieSet.get(currentPage - 1));
-      pagination(currentPage - 1, totalPages);
+      if (currentPage <= 1) {
+        paginationContainer.innerHTML = '';
+      } else {
+        pagination(currentPage - 1, totalPages);
+      }
+      console.log('if');
+      console.log(currentPage);
     } else {
       renderMyLibraryWatched(splittedMovieSet.get(currentPage));
       pagination(currentPage, totalPages);
+      console.log('else');
+      console.log(currentPage);
     }
   }
 
