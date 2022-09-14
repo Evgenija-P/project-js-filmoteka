@@ -3,7 +3,7 @@ import { renderMyLibraryQueue } from './renderMyLibraryQueue';
 import { renderMyLibraryWatched } from './renderMyLibraryWatched';
 import { readLocalStorageData, deserializeData } from './local-storage-API';
 
-const MOVIES_PER_PAGE = 4;
+const MOVIES_PER_PAGE = 20;
 
 const paginationContainer = document.querySelector('.pagination-container');
 
