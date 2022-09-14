@@ -6,7 +6,7 @@ const refs = {
 
 export function renderMyLibraryWatched() {
     const userWatched = JSON.parse(localStorage.getItem('watched'));
-    if (userWatched === null || userWatched.length === 0) {
+    if (!userWatched) {
     return (refs.gallery.innerHTML =
       '<h1 style="font-size=80px">There are not added watched films</h1>');
   }
